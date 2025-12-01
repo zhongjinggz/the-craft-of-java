@@ -1,6 +1,5 @@
 package refactoring.performanceinvoice.application;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import refactoring.performanceinvoice.domain.PerformanceInvoice;
 import refactoring.performanceinvoice.domain.Play;
@@ -12,8 +11,11 @@ import java.util.Map;
 @Service
 public class PerformanceInvoiceService {
 
-    @Autowired
-    private PerformanceInvoiceRepository repository;
+    private final PerformanceInvoiceRepository repository;
+
+    public PerformanceInvoiceService(PerformanceInvoiceRepository repository) {
+        this.repository = repository;
+    }
 
     Map<String, Play> plays = new HashMap<>();
 
@@ -27,7 +29,7 @@ public class PerformanceInvoiceService {
         int totalAmount = 0;
         int totalAudiencePoints = 0;
 
-        PerformanceInvoice invoice1 = new PerformanceInvoice(
+        PerformanceInvoice invoice = new PerformanceInvoice(
                 performanceSummary.getCustomer());
 
 
@@ -59,14 +61,13 @@ public class PerformanceInvoiceService {
             totalAmount += thisAmount;
 
             // 添加账单项
-            invoice1.addItem(play.getName(),thisAmount, perf.getAudience());
+            invoice.addItem(play.getName(),thisAmount, perf.getAudience());
 
         }
 
         //设置账单金额和积分
-        invoice1.setTotalAmount(totalAmount);
-        invoice1.setTotalAudiencePoints(totalAudiencePoints);
-        PerformanceInvoice invoice = invoice1;
+        invoice.setTotalAmount(totalAmount);
+        invoice.setTotalAudiencePoints(totalAudiencePoints);
 
         repository.save(invoice);
         return invoice;

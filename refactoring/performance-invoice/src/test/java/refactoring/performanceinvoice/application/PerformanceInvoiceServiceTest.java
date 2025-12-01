@@ -2,9 +2,9 @@ package refactoring.performanceinvoice.application;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import refactoring.performanceinvoice.domain.PerformanceInvoice;
 import refactoring.performanceinvoice.drivenadapter.PerformanceInvoiceRepository;
 
@@ -13,28 +13,21 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 import static org.mockito.Mockito.times;
 
+@ExtendWith(MockitoExtension.class)
 class PerformanceInvoiceServiceTest {
 
     @Mock
     private PerformanceInvoiceRepository repository; // 模拟持久化层接口
 
-    @InjectMocks
     private PerformanceInvoiceService performanceInvoiceService;
 
     @BeforeEach
     void setUp() {
 
-        // 初始化 Mockito 注解支持
-        MockitoAnnotations.openMocks(this);
-
-        // 模拟 repository 行为
-        doNothing().when(repository).save(any(PerformanceInvoice.class));
+        performanceInvoiceService = new PerformanceInvoiceService(repository);
 
     }
 
-    /**
-     * 测试正常悲剧演出账单生成
-     */
     @Test
     void should_create_bill_with_tragedy_performance() {
         // given
@@ -118,9 +111,8 @@ class PerformanceInvoiceServiceTest {
         PerformanceSummary summary = new PerformanceSummary("赵六");
         summary.addPerformance("invalid", 20);
 
-        assertThrows(NullPointerException.class, () -> {
-            performanceInvoiceService.createInvoice(summary);
-        });
+        assertThrows(NullPointerException.class, () ->
+            performanceInvoiceService.createInvoice(summary));
 
         verify(repository, never()).save(any(PerformanceInvoice.class)); // 不应执行保存
     }
