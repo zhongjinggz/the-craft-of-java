@@ -4,14 +4,14 @@ import refactoring.performanceinvoice.application.Performance;
 
 //TODO 用 Factory 代替 valueOf
 public class Play {
-    private String id;
-    private String name;
-    private PlayType type;
+    private final String id;
+    private final String name;
+    private final PlayType type;
 
     public Play(String id, String name, String typeString) {
         this.id = id;
         this.name = name;
-        this.type = PlayType.valueOf(typeString);
+        this.type = PlayTypeFactory.getType(typeString);
     }
 
     public String getId() {
