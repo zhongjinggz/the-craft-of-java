@@ -6,7 +6,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import refactoring.performanceinvoice.domain.PerformanceInvoice;
-import refactoring.performanceinvoice.drivenadapter.PerformanceInvoiceRepository;
+import refactoring.performanceinvoice.drivenadapter.PerformanceInvoiceRepositoryJdbc;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -17,7 +17,7 @@ import static org.mockito.Mockito.times;
 class PerformanceInvoiceServiceTest {
 
     @Mock
-    private PerformanceInvoiceRepository repository; // 模拟持久化层接口
+    private PerformanceInvoiceRepositoryJdbc repository; // 模拟持久化层接口
 
     private PerformanceInvoiceService performanceInvoiceService;
 
