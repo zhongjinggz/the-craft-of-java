@@ -15,8 +15,8 @@ import java.util.Map;
 //DONE 用构造函数进行依赖注入
 //DONE 降低复杂度
 //DONE 解决特性依恋
-//TODO 解决调用链
-//TODO 策略模式
+//DONE 解决调用链
+//DONE 策略模式
 //TODO 重构魔法数字
 //TODO plays 应放在数据库
 //清理其他类

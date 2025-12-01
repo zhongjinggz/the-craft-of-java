@@ -2,7 +2,7 @@ package refactoring.performanceinvoice.domain;
 
 import refactoring.performanceinvoice.application.Performance;
 
-//TODO 避免对 Performance 的依赖
+//DONE 避免对 Performance 的依赖
 public class Play {
     String id;
     String name;
