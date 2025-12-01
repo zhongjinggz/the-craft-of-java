@@ -13,8 +13,10 @@ import java.util.Map;
 //DONE 解决仓库依赖倒置问题
 //DONE 分层架构
 //DONE 用构造函数进行依赖注入
-//TODO 降低复杂度
+//DONE 降低复杂度
+//TODO 解决特性依恋
 //TODO 策略模式
+//TODO 重构魔法数字
 //TODO plays 应放在数据库
 //清理其他类
 
@@ -42,14 +44,14 @@ public class PerformanceInvoiceService {
         for (Performance perf : performanceSummary.getPerformances()) {
             Play play = plays.get(perf.getPlayId());
 
-            int amount = calAmount(perf, play);
+            int amount = play.calAmount(perf.getAudienceCount());
             totalAmount += amount;
 
-            int audiencePoints = calAudiencePoints(perf, play);
+            int audiencePoints = play.calAudiencePoints(perf.getAudienceCount());
             totalAudiencePoints += audiencePoints;
 
             // 添加账单项
-            invoice.addItem(play.getName(),amount, perf.getAudience());
+            invoice.addItem(play.getName(),amount, perf.getAudienceCount());
 
         }
 
@@ -61,37 +63,10 @@ public class PerformanceInvoiceService {
         return invoice;
     }
 
-    private int calAudiencePoints(Performance perf, Play play) {
-        int audiencePoints = Math.max(perf.getAudience() - 30, 0);
-        if ("comedy".equals(play.getType())) {
-            audiencePoints += Math.floorDiv(perf.getAudience(), 5);
-        }
-        return audiencePoints;
-    }
-
     private void initPlays() {
         plays.put("dasheng", new Play("dasheng", "大圣娶亲", "tragedy"));
         plays.put("007", new Play("007", "国产凌凌漆", "comedy"));
         plays.put("qiuxiang", new Play("qiuxiang", "唐伯虎点秋香", "comedy"));
     }
 
-    private int calAmount(Performance perf, Play play) {
-        int thisAmount;
-
-        if (play.getType().equals("tragedy")) {
-            thisAmount = 40000;
-            if (perf.getAudience() > 30) {
-                thisAmount += 1000 * (perf.getAudience() - 30);
-            }
-        } else if (play.getType().equals("comedy")) {
-            thisAmount = 30000;
-            if (perf.getAudience() > 20) {
-                thisAmount += 10000 + 500 * (perf.getAudience() - 20);
-            }
-            thisAmount += 300 * perf.getAudience();
-        } else {
-            throw new IllegalArgumentException("戏剧类型不正确!");
-        }
-        return thisAmount;
-    }
 }
