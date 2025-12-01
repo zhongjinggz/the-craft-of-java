@@ -11,7 +11,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import refactoring.performanceinvoice.application.PerformanceInvoiceService;
 import refactoring.performanceinvoice.application.PerformanceSummary;
-import refactoring.performanceinvoice.domain.PerformanceInvoice;
+import refactoring.performanceinvoice.domain.performanceinvoice.PerformanceInvoice;
 
 @ExtendWith(MockitoExtension.class)
 class PerformanceInvoiceControllerTest {

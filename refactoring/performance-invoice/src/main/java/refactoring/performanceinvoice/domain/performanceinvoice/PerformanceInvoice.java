@@ -1,4 +1,4 @@
-package refactoring.performanceinvoice.domain;
+package refactoring.performanceinvoice.domain.performanceinvoice;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -12,7 +12,7 @@ public class PerformanceInvoice {
 
     private int volumeCredits;
 
-    private List<PerformanceInvoiceItem> items = new ArrayList<>();
+    private final List<PerformanceInvoiceItem> items = new ArrayList<>();
 
     public PerformanceInvoice(String customer) {
         this.customer = customer;

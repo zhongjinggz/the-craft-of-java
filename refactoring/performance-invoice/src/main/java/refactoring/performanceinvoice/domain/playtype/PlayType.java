@@ -1,4 +1,4 @@
-package refactoring.performanceinvoice.domain;
+package refactoring.performanceinvoice.domain.playtype;
 
 //DONE 避免重复创建PlayType对象
 public abstract class PlayType {

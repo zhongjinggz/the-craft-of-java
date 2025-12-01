@@ -1,10 +1,10 @@
 package refactoring.performanceinvoice.application;
 
 import org.springframework.stereotype.Service;
-import refactoring.performanceinvoice.domain.PerformanceInvoice;
-import refactoring.performanceinvoice.domain.PerformanceInvoiceRepository;
-import refactoring.performanceinvoice.domain.Play;
-import refactoring.performanceinvoice.domain.PlayTypeRepository;
+import refactoring.performanceinvoice.domain.performanceinvoice.PerformanceInvoice;
+import refactoring.performanceinvoice.domain.performanceinvoice.PerformanceInvoiceRepository;
+import refactoring.performanceinvoice.domain.playtype.Play;
+import refactoring.performanceinvoice.domain.playtype.PlayTypeRepository;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,11 +15,14 @@ import java.util.Map;
 @Service
 public class PerformanceInvoiceService {
 
-    private final PerformanceInvoiceRepository repository;
+    private final PerformanceInvoiceRepository performanceInvoiceRepository;
     private final PlayTypeRepository playTypeRepository;
 
-    public PerformanceInvoiceService(PerformanceInvoiceRepository repository) {
-        this.repository = repository;
+    public PerformanceInvoiceService(PerformanceInvoiceRepository performanceInvoiceRepository
+        , PlayTypeRepository playTypeRepository) {
+
+        this.performanceInvoiceRepository = performanceInvoiceRepository;
+        this.playTypeRepository = playTypeRepository;
     }
 
     Map<String, Play> plays = new HashMap<>();
@@ -32,7 +35,7 @@ public class PerformanceInvoiceService {
         int totalAudiencePoints = 0;
 
         PerformanceInvoice invoice = new PerformanceInvoice(
-                performanceSummary.getCustomer());
+            performanceSummary.getCustomer());
 
         for (Performance perf : performanceSummary.getPerformances()) {
             Play play = plays.get(perf.getPlayId());
@@ -44,7 +47,7 @@ public class PerformanceInvoiceService {
             totalAudiencePoints += audiencePoints;
 
             // 添加账单项
-            invoice.addItem(play.getName(),amount, perf.getAudienceCount());
+            invoice.addItem(play.getName(), amount, perf.getAudienceCount());
 
         }
 
@@ -52,7 +55,7 @@ public class PerformanceInvoiceService {
         invoice.setTotalAmount(totalAmount);
         invoice.setTotalAudiencePoints(totalAudiencePoints);
 
-        repository.save(invoice);
+        performanceInvoiceRepository.save(invoice);
         return invoice;
     }
 

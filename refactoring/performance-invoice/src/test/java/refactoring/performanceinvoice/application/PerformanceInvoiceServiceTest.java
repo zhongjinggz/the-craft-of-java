@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import refactoring.performanceinvoice.domain.PerformanceInvoice;
-import refactoring.performanceinvoice.domain.PerformanceInvoiceRepository;
-import refactoring.performanceinvoice.drivenadapter.PerformanceInvoiceRepositoryJdbc;
+import refactoring.performanceinvoice.domain.performanceinvoice.PerformanceInvoice;
+import refactoring.performanceinvoice.domain.performanceinvoice.PerformanceInvoiceRepository;
+import refactoring.performanceinvoice.domain.playtype.PlayTypeRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -18,14 +18,18 @@ import static org.mockito.Mockito.times;
 class PerformanceInvoiceServiceTest {
 
     @Mock
-    private PerformanceInvoiceRepository repository; // 模拟持久化层接口
+    private PerformanceInvoiceRepository PerformanceInvoiceRepository; // 模拟持久化层接口
+
+    @Mock
+    private PlayTypeRepository playTypeRepository; // 模拟持久化层接口
 
     private PerformanceInvoiceService performanceInvoiceService;
 
     @BeforeEach
     void setUp() {
 
-        performanceInvoiceService = new PerformanceInvoiceService(repository);
+        performanceInvoiceService = new PerformanceInvoiceService(PerformanceInvoiceRepository,
+            playTypeRepository);
 
     }
 
@@ -50,7 +54,7 @@ class PerformanceInvoiceServiceTest {
         assertEquals(5, invoice.getVolumeCredits());
 
         // 验证数据库操作
-        verify(repository, times(1)).save(any(PerformanceInvoice.class));
+        verify(PerformanceInvoiceRepository, times(1)).save(any(PerformanceInvoice.class));
     }
 
     /**
@@ -76,7 +80,7 @@ class PerformanceInvoiceServiceTest {
         // 积分：max(25-30,0)=0 + floorDiv(25,5)=5 => 共5分
         assertEquals(5, invoice.getVolumeCredits());
 
-        verify(repository, times(1)).save(any(PerformanceInvoice.class));
+        verify(PerformanceInvoiceRepository, times(1)).save(any(PerformanceInvoice.class));
     }
 
     /**
@@ -100,7 +104,7 @@ class PerformanceInvoiceServiceTest {
         // 积分：悲剧 max(0), 喜剧 floorDiv(20/5)=4 → 总共4分
         assertEquals(4, invoice.getVolumeCredits());
 
-        verify(repository, times(1)).save(any(PerformanceInvoice.class));
+        verify(PerformanceInvoiceRepository, times(1)).save(any(PerformanceInvoice.class));
     }
 
     /**
@@ -115,7 +119,7 @@ class PerformanceInvoiceServiceTest {
         assertThrows(NullPointerException.class, () ->
             performanceInvoiceService.createInvoice(summary));
 
-        verify(repository, never()).save(any(PerformanceInvoice.class)); // 不应执行保存
+        verify(PerformanceInvoiceRepository, never()).save(any(PerformanceInvoice.class)); // 不应执行保存
     }
 
 
@@ -128,7 +132,7 @@ class PerformanceInvoiceServiceTest {
     void should_create_empty_bill_for_no_performances() {
         PerformanceSummary summary = new PerformanceSummary("孙七");
 
-        doNothing().when(repository).save(any(PerformanceInvoice.class));
+        doNothing().when(PerformanceInvoiceRepository).save(any(PerformanceInvoice.class));
 
         PerformanceInvoice invoice = performanceInvoiceService.createInvoice(summary);
 
@@ -138,6 +142,6 @@ class PerformanceInvoiceServiceTest {
         assertEquals(0, invoice.getTotalAmount());
         assertEquals(0, invoice.getVolumeCredits());
 
-        verify(repository, times(1)).save(any(PerformanceInvoice.class));
+        verify(PerformanceInvoiceRepository, times(1)).save(any(PerformanceInvoice.class));
     }
 }
