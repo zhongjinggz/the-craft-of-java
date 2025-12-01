@@ -9,7 +9,11 @@ public class PlayType {
     }
 
     public static PlayType valueOf(String name) {
-        return new PlayType(name);
+        if ("tragedy".equals(name)) {
+            return new TragedyPlayType(name);
+        } else {
+            return new ComedyPlayType(name);
+        }
     }
 
     public int calAmount(int audienceCount) {
