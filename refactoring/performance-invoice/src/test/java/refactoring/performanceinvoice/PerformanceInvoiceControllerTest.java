@@ -5,21 +5,27 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.mockito.Spy;
+import refactoring.performanceinvoice.application.InvoiceService;
 import refactoring.performanceinvoice.application.PerformanceSummary;
 import refactoring.performanceinvoice.domain.PerformanceInvoice;
 import refactoring.performanceinvoice.drivingadapter.PerformanceInvoiceController;
-import refactoring.performanceinvoice.drivingadapter.PerformanceInvoiceRepository;
+import refactoring.performanceinvoice.drivenadapter.PerformanceInvoiceRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 class PerformanceInvoiceControllerTest {
 
-    @InjectMocks
-    private PerformanceInvoiceController controller; // 被测试的控制器实例
 
     @Mock
     private PerformanceInvoiceRepository repository; // 模拟持久化层接口
+
+    @InjectMocks
+    @Spy
+    private InvoiceService invoiceService;
+
+    private PerformanceInvoiceController controller; // 被测试的控制器实例
 
     @BeforeEach
     void setUp() {
@@ -29,6 +35,8 @@ class PerformanceInvoiceControllerTest {
 
         // 模拟 repository 行为
         doNothing().when(repository).save(any(PerformanceInvoice.class));
+
+        this.controller = new PerformanceInvoiceController(invoiceService);
     }
 
     /**
