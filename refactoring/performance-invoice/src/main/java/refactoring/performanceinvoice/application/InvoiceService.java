@@ -16,7 +16,8 @@ public class InvoiceService {
     private PerformanceInvoiceRepository repository;
 
     Map<String, Play> plays = new HashMap<>();
-    public PerformanceInvoice createInvoice2(PerformanceSummary performanceSummary) {
+
+    public PerformanceInvoice createInvoice(PerformanceSummary performanceSummary) {
 
         //初始化戏剧列表
         plays.put("dasheng", new Play("dasheng", "大圣娶亲", "tragedy"));
@@ -26,7 +27,7 @@ public class InvoiceService {
         int totalAmount = 0;
         int totalAudiencePoints = 0;
 
-        PerformanceInvoice invoice = new PerformanceInvoice(
+        PerformanceInvoice invoice1 = new PerformanceInvoice(
                 performanceSummary.getCustomer());
 
 
@@ -58,18 +59,14 @@ public class InvoiceService {
             totalAmount += thisAmount;
 
             // 添加账单项
-            invoice.addItem(play.getName(),thisAmount, perf.getAudience());
+            invoice1.addItem(play.getName(),thisAmount, perf.getAudience());
 
         }
 
         //设置账单金额和积分
-        invoice.setTotalAmount(totalAmount);
-        invoice.setTotalAudiencePoints(totalAudiencePoints);
-        return invoice;
-    }
-
-    public PerformanceInvoice createInvoice3(PerformanceSummary performanceSummary) {
-        PerformanceInvoice invoice = createInvoice2(performanceSummary);
+        invoice1.setTotalAmount(totalAmount);
+        invoice1.setTotalAudiencePoints(totalAudiencePoints);
+        PerformanceInvoice invoice = invoice1;
 
         repository.save(invoice);
         return invoice;

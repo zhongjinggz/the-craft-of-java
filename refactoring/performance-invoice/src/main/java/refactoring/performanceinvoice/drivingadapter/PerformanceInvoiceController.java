@@ -1,15 +1,9 @@
 package refactoring.performanceinvoice.drivingadapter;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import refactoring.performanceinvoice.application.InvoiceService;
 import refactoring.performanceinvoice.application.PerformanceSummary;
 import refactoring.performanceinvoice.domain.PerformanceInvoice;
-import refactoring.performanceinvoice.domain.Play;
-import refactoring.performanceinvoice.drivenadapter.PerformanceInvoiceRepository;
-
-import java.util.HashMap;
-import java.util.Map;
 
 //DONE 重构名称
 //TODO 抽取应用服务
@@ -33,7 +27,7 @@ public class PerformanceInvoiceController {
     @PostMapping("/api/performance-invoice")
     public PerformanceInvoice createInvoice(@RequestBody PerformanceSummary performanceSummary) {
 
-        PerformanceInvoice invoice = invoiceService.createInvoice3(performanceSummary);
+        PerformanceInvoice invoice = invoiceService.createInvoice(performanceSummary);
 
         return invoice;
     }
