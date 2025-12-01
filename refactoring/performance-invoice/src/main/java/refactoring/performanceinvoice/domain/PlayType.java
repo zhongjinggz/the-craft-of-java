@@ -1,7 +1,13 @@
 package refactoring.performanceinvoice.domain;
 
-//TODO 避免重复创建PlayType对象
+//DONE 避免重复创建PlayType对象
 public abstract class PlayType {
+    private static final String TRAGEDY_NAME = "tragedy";
+    private static final String COMEDY_NAME = "comedy";
+
+    private static final PlayType TRAGEDY = new TragedyPlayType(TRAGEDY_NAME);
+    private static final PlayType COMEDY = new ComedyPlayType(COMEDY_NAME);
+
     protected final String name;
 
     public PlayType(String name) {
@@ -9,10 +15,10 @@ public abstract class PlayType {
     }
 
     public static PlayType valueOf(String name) {
-        if ("tragedy".equals(name)) {
-            return new TragedyPlayType(name);
+        if (TRAGEDY_NAME.equals(name)) {
+            return TRAGEDY;
         } else {
-            return new ComedyPlayType(name);
+            return COMEDY;
         }
     }
 
