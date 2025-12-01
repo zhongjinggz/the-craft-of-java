@@ -1,31 +1,25 @@
-package refactoring.performanceinvoice;
+package refactoring.performanceinvoice.application;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-import org.mockito.Spy;
-import refactoring.performanceinvoice.application.InvoiceService;
-import refactoring.performanceinvoice.application.PerformanceSummary;
 import refactoring.performanceinvoice.domain.PerformanceInvoice;
-import refactoring.performanceinvoice.drivingadapter.PerformanceInvoiceController;
 import refactoring.performanceinvoice.drivenadapter.PerformanceInvoiceRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
 
-class PerformanceInvoiceControllerTest {
-
+class PerformanceInvoiceServiceTest {
 
     @Mock
     private PerformanceInvoiceRepository repository; // 模拟持久化层接口
 
     @InjectMocks
-    @Spy
-    private InvoiceService invoiceService;
-
-    private PerformanceInvoiceController controller; // 被测试的控制器实例
+    private PerformanceInvoiceService performanceInvoiceService;
 
     @BeforeEach
     void setUp() {
@@ -36,7 +30,6 @@ class PerformanceInvoiceControllerTest {
         // 模拟 repository 行为
         doNothing().when(repository).save(any(PerformanceInvoice.class));
 
-        this.controller = new PerformanceInvoiceController(invoiceService);
     }
 
     /**
@@ -49,7 +42,7 @@ class PerformanceInvoiceControllerTest {
         summary.addPerformance("dasheng", 35); // 超过30人
 
         // when
-        PerformanceInvoice invoice = controller.createInvoice(summary);
+        PerformanceInvoice invoice = performanceInvoiceService.createInvoice(summary);
 
         // then
         assertNotNull(invoice);
@@ -77,7 +70,7 @@ class PerformanceInvoiceControllerTest {
 
 //        doNothing().when(repository).save(any(PerformanceInvoice.class));
 
-        PerformanceInvoice invoice = controller.createInvoice(summary);
+        PerformanceInvoice invoice = performanceInvoiceService.createInvoice(summary);
 
         assertNotNull(invoice);
         assertEquals("李四", invoice.getCustomer());
@@ -101,7 +94,7 @@ class PerformanceInvoiceControllerTest {
         summary.addPerformance("dasheng", 30); // 悲剧刚好30人
         summary.addPerformance("qiuxiang", 20); // 喜剧刚好20人
 
-        PerformanceInvoice invoice = controller.createInvoice(summary);
+        PerformanceInvoice invoice = performanceInvoiceService.createInvoice(summary);
 
         assertNotNull(invoice);
         assertEquals("王五", invoice.getCustomer());
@@ -126,7 +119,7 @@ class PerformanceInvoiceControllerTest {
         summary.addPerformance("invalid", 20);
 
         assertThrows(NullPointerException.class, () -> {
-            controller.createInvoice(summary);
+            performanceInvoiceService.createInvoice(summary);
         });
 
         verify(repository, never()).save(any(PerformanceInvoice.class)); // 不应执行保存
@@ -144,7 +137,7 @@ class PerformanceInvoiceControllerTest {
 
         doNothing().when(repository).save(any(PerformanceInvoice.class));
 
-        PerformanceInvoice invoice = controller.createInvoice(summary);
+        PerformanceInvoice invoice = performanceInvoiceService.createInvoice(summary);
 
         assertNotNull(invoice);
         assertEquals("孙七", invoice.getCustomer());

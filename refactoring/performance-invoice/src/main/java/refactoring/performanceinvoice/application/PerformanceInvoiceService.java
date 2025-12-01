@@ -10,7 +10,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class InvoiceService {
+public class PerformanceInvoiceService {
 
     @Autowired
     private PerformanceInvoiceRepository repository;

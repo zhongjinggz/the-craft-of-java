@@ -1,12 +1,12 @@
 package refactoring.performanceinvoice.drivingadapter;
 
 import org.springframework.web.bind.annotation.*;
-import refactoring.performanceinvoice.application.InvoiceService;
+import refactoring.performanceinvoice.application.PerformanceInvoiceService;
 import refactoring.performanceinvoice.application.PerformanceSummary;
 import refactoring.performanceinvoice.domain.PerformanceInvoice;
 
 //DONE 重构名称
-//TODO 抽取应用服务
+//DONE 抽取应用服务
 //TODO 解决仓库依赖倒置问题
 //TODO 分层架构
 //TODO 用构造函数进行依赖注入
@@ -18,16 +18,16 @@ import refactoring.performanceinvoice.domain.PerformanceInvoice;
 @RestController
 public class PerformanceInvoiceController {
 
-    private InvoiceService invoiceService;
+    private PerformanceInvoiceService performanceInvoiceService;
 
-    public PerformanceInvoiceController(InvoiceService invoiceService) {
-        this.invoiceService = invoiceService;
+    public PerformanceInvoiceController(PerformanceInvoiceService performanceInvoiceService) {
+        this.performanceInvoiceService = performanceInvoiceService;
     }
 
     @PostMapping("/api/performance-invoice")
     public PerformanceInvoice createInvoice(@RequestBody PerformanceSummary performanceSummary) {
 
-        PerformanceInvoice invoice = invoiceService.createInvoice(performanceSummary);
+        PerformanceInvoice invoice = performanceInvoiceService.createInvoice(performanceSummary);
 
         return invoice;
     }
