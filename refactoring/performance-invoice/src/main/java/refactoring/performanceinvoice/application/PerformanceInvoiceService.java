@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import refactoring.performanceinvoice.domain.PerformanceInvoice;
 import refactoring.performanceinvoice.domain.PerformanceInvoiceRepository;
 import refactoring.performanceinvoice.domain.Play;
+import refactoring.performanceinvoice.domain.PlayTypeRepository;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -15,6 +16,7 @@ import java.util.Map;
 public class PerformanceInvoiceService {
 
     private final PerformanceInvoiceRepository repository;
+    private final PlayTypeRepository playTypeRepository;
 
     public PerformanceInvoiceService(PerformanceInvoiceRepository repository) {
         this.repository = repository;
