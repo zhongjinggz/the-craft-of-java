@@ -41,7 +41,7 @@ public class PerformanceInvoice {
         this.totalAmount = totalAmount;
     }
 
-    public void setVolumeCredits(int volumeCredits) {
+    public void setVolumePoints(int volumeCredits) {
         this.volumeCredits = volumeCredits;
     }
 

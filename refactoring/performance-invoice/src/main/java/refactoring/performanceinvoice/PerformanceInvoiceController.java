@@ -14,7 +14,7 @@ public class PerformanceInvoiceController {
     @Autowired
     PerformanceInvoiceRepository repository;
 
-    @PostMapping("/api/performancebill")
+    @PostMapping("/api/performance-invoice")
     public PerformanceInvoice createBill(@RequestBody PerformanceSummary performanceSummary) {
         //初始化戏剧列表
         plays.put("dasheng", new Play("dasheng", "大圣娶亲", "tragedy"));
@@ -30,19 +30,19 @@ public class PerformanceInvoiceController {
 
         for (Performance perf : performanceSummary.getPerformances()) {
             Play play = plays.get(perf.getPlayId());
-            int thisAmount;
+            int thisAmt;
 
             if (play.getType().equals("tragedy")) {
-                thisAmount = 40000;
+                thisAmt = 40000;
                 if (perf.getAudience() > 30) {
-                    thisAmount += 1000 * (perf.getAudience() - 30);
+                    thisAmt += 1000 * (perf.getAudience() - 30);
                 }
             } else if (play.getType().equals("comedy")) {
-                thisAmount = 30000;
+                thisAmt = 30000;
                 if (perf.getAudience() > 20) {
-                    thisAmount += 10000 + 500 * (perf.getAudience() - 20);
+                    thisAmt += 10000 + 500 * (perf.getAudience() - 20);
                 }
-                thisAmount += 300 * perf.getAudience();
+                thisAmt += 300 * perf.getAudience();
             } else {
                 throw new IllegalArgumentException("戏剧类型不正确!");
             }
@@ -53,15 +53,17 @@ public class PerformanceInvoiceController {
                 volumeCredits += Math.floorDiv(perf.getAudience(), 5);
             }
 
-            totalAmount += thisAmount;
+            totalAmount += thisAmt;
 
-            bill.addItem(play.getName(),thisAmount, perf.getAudience());
+            // 添加账单项
+            bill.addItem(play.getName(),thisAmt, perf.getAudience());
 
 
         }
 
+        //设置账单金额和积分
         bill.setTotalAmount(totalAmount);
-        bill.setVolumeCredits(volumeCredits);
+        bill.setVolumePoints(volumeCredits);
 
         repository.save(bill);
 
