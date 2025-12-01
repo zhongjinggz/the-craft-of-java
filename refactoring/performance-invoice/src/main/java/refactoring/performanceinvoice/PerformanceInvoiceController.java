@@ -15,7 +15,7 @@ public class PerformanceInvoiceController {
     PerformanceInvoiceRepository repository;
 
     @PostMapping("/api/performance-invoice")
-    public PerformanceInvoice createBill(@RequestBody PerformanceSummary performanceSummary) {
+    public PerformanceInvoice createInvoice(@RequestBody PerformanceSummary performanceSummary) {
         //初始化戏剧列表
         plays.put("dasheng", new Play("dasheng", "大圣娶亲", "tragedy"));
         plays.put("007", new Play("007", "国产凌凌漆", "comedy"));
