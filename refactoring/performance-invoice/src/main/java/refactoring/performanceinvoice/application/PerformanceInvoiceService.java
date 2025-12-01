@@ -41,17 +41,15 @@ public class PerformanceInvoiceService {
 
         for (Performance perf : performanceSummary.getPerformances()) {
             Play play = plays.get(perf.getPlayId());
-            int thisAmount = calThisAmount(perf, play);
-            totalAmount += thisAmount;
 
-            //计算观众量积分
-            totalAudiencePoints += Math.max(perf.getAudience() - 30, 0);
-            if ("comedy".equals(play.getType())) {
-                totalAudiencePoints += Math.floorDiv(perf.getAudience(), 5);
-            }
+            int amount = calAmount(perf, play);
+            totalAmount += amount;
+
+            int audiencePoints = calAudiencePoints(perf, play);
+            totalAudiencePoints += audiencePoints;
 
             // 添加账单项
-            invoice.addItem(play.getName(),thisAmount, perf.getAudience());
+            invoice.addItem(play.getName(),amount, perf.getAudience());
 
         }
 
@@ -63,13 +61,21 @@ public class PerformanceInvoiceService {
         return invoice;
     }
 
+    private int calAudiencePoints(Performance perf, Play play) {
+        int audiencePoints = Math.max(perf.getAudience() - 30, 0);
+        if ("comedy".equals(play.getType())) {
+            audiencePoints += Math.floorDiv(perf.getAudience(), 5);
+        }
+        return audiencePoints;
+    }
+
     private void initPlays() {
         plays.put("dasheng", new Play("dasheng", "大圣娶亲", "tragedy"));
         plays.put("007", new Play("007", "国产凌凌漆", "comedy"));
         plays.put("qiuxiang", new Play("qiuxiang", "唐伯虎点秋香", "comedy"));
     }
 
-    private int calThisAmount(Performance perf, Play play) {
+    private int calAmount(Performance perf, Play play) {
         int thisAmount;
 
         if (play.getType().equals("tragedy")) {
