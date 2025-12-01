@@ -1,12 +1,16 @@
-package refactoring.performanceinvoice;
+package refactoring.performanceinvoice.drivingadapter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import refactoring.performanceinvoice.application.Performance;
+import refactoring.performanceinvoice.application.PerformanceSummary;
+import refactoring.performanceinvoice.domain.PerformanceInvoice;
+import refactoring.performanceinvoice.domain.Play;
 
 import java.util.HashMap;
 import java.util.Map;
 
-//TODO 重构名称
+//DONE 重构名称
 //TODO 修改注释
 //TODO 分层架构
 //TODO 降低复杂度

@@ -1,4 +1,4 @@
-package refactoring.performanceinvoice;
+package refactoring.performanceinvoice.application;
 
 public class Performance {
 

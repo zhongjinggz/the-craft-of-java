@@ -3,6 +3,8 @@ package refactoring.performanceinvoice;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
+import refactoring.performanceinvoice.domain.Play;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class PlayTest {

@@ -5,6 +5,10 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import refactoring.performanceinvoice.application.PerformanceSummary;
+import refactoring.performanceinvoice.domain.PerformanceInvoice;
+import refactoring.performanceinvoice.drivingadapter.PerformanceInvoiceController;
+import refactoring.performanceinvoice.drivingadapter.PerformanceInvoiceRepository;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -107,7 +111,7 @@ class PerformanceInvoiceControllerTest {
     /**
      * 测试若剧目不存在，则抛出空异常
      */
-    //@Test
+    @Test
     void should_throw_null_pointer_exception_for_invalid_play() {
 
         PerformanceSummary summary = new PerformanceSummary("赵六");
