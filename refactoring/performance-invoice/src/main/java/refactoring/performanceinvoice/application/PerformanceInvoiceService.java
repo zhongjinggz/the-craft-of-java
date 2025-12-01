@@ -8,16 +8,6 @@ import refactoring.performanceinvoice.domain.Play;
 import java.util.HashMap;
 import java.util.Map;
 
-//DONE 重构名称
-//DONE 抽取应用服务
-//DONE 解决仓库依赖倒置问题
-//DONE 分层架构
-//DONE 用构造函数进行依赖注入
-//DONE 降低复杂度
-//DONE 解决特性依恋
-//DONE 解决调用链
-//DONE 策略模式
-//TODO 重构魔法数字
 //TODO plays 应放在数据库
 //清理其他类
 
