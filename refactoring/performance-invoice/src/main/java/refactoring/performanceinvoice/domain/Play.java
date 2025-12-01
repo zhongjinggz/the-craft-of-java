@@ -1,5 +1,7 @@
 package refactoring.performanceinvoice.domain;
 
+import refactoring.performanceinvoice.application.Performance;
+
 //TODO 避免对 Performance 的依赖
 public class Play {
     String id;
@@ -28,5 +30,9 @@ public class Play {
 
     public int calAmount(int audienceCount) {
         return type.calAmount(audienceCount);
+    }
+
+    public int calAudiencePoints(Performance perf) {
+        return type.calAudiencePoints(perf.getAudienceCount());
     }
 }

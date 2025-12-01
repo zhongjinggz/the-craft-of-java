@@ -2,7 +2,7 @@ package refactoring.performanceinvoice.domain;
 
 //TODO 避免重复创建PlayType对象
 public class PlayType {
-    private final String name;
+    protected final String name;
 
     public PlayType(String name) {
         this.name = name;
@@ -19,7 +19,6 @@ public class PlayType {
     public int calAmount(int audienceCount) {
         int amount;
 
-//        if (play.getTypeString().equals("tragedy")) {
         if (name.equals("tragedy")) {
             amount = 40000;
             if (audienceCount > 30) {

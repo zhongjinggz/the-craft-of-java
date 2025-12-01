@@ -48,7 +48,7 @@ public class PerformanceInvoiceService {
             int amount = play.calAmount(perf.getAudienceCount());
             totalAmount += amount;
 
-            int audiencePoints = play.type.calAudiencePoints(perf.getAudienceCount());
+            int audiencePoints = play.calAudiencePoints(perf);
             totalAudiencePoints += audiencePoints;
 
             // 添加账单项
