@@ -1,2 +1,4 @@
-# refactoring-performance-invoice
-重构样例：“演出账单”问题
+作者：钟老钟（https://github.com/zhongjinggz）
+
+一堆练习 Java 编程匠艺 的题目。
+

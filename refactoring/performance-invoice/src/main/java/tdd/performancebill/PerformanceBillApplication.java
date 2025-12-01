@@ -1,0 +1,13 @@
+package tdd.performancebill;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class PerformanceBillApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(PerformanceBillApplication.class, args);
+    }
+
+}
