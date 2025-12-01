@@ -22,6 +22,10 @@ public abstract class PlayType {
         }
     }
 
+    public String getName() {
+        return name;
+    }
+
     public abstract int calAmount(int audienceCount);
 
     public abstract int calAudiencePoints(int audienceCount);

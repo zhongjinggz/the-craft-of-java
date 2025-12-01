@@ -38,8 +38,8 @@ class PerformanceInvoiceControllerTest {
 
         // 创建期望返回的发票对象
         PerformanceInvoice expectedInvoice = new PerformanceInvoice("张三");
-        expectedInvoice.setTotalAmount(1000);
-        expectedInvoice.setTotalAudiencePoints(10);
+        expectedInvoice.setAmount(1000);
+        expectedInvoice.setAudiencePoints(10);
 
         // 设置mock行为
         when(performanceInvoiceService.createInvoice(performanceSummary)).thenReturn(expectedInvoice);
@@ -50,8 +50,8 @@ class PerformanceInvoiceControllerTest {
         // 验证结果
         assertNotNull(actualInvoice, "返回的发票对象不应为null");
         assertEquals("张三", actualInvoice.getCustomer(), "客户名称应该匹配");
-        assertEquals(1000, actualInvoice.getTotalAmount(), "总金额应该匹配");
-        assertEquals(10, actualInvoice.getVolumeCredits(), "积分应该匹配");
+        assertEquals(1000, actualInvoice.getAmount(), "总金额应该匹配");
+        assertEquals(10, actualInvoice.getAudiencePoints(), "积分应该匹配");
 
         // 验证service方法被正确调用
         verify(performanceInvoiceService, times(1)).createInvoice(performanceSummary);

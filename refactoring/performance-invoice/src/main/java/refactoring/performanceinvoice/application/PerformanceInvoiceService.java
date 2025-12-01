@@ -6,8 +6,7 @@ import refactoring.performanceinvoice.domain.performanceinvoice.PerformanceInvoi
 import refactoring.performanceinvoice.domain.playtype.Play;
 import refactoring.performanceinvoice.domain.playtype.PlayTypeRepository;
 
-//DONE plays 应放在数据库
-//清理其他类
+//TODO 清理其他类
 
 @Service
 public class PerformanceInvoiceService {
@@ -45,8 +44,8 @@ public class PerformanceInvoiceService {
         }
 
         //设置账单金额和积分
-        invoice.setTotalAmount(totalAmount);
-        invoice.setTotalAudiencePoints(totalAudiencePoints);
+        invoice.setAmount(totalAmount);
+        invoice.setAudiencePoints(totalAudiencePoints);
 
         performanceInvoiceRepository.save(invoice);
         return invoice;

@@ -1,6 +1,7 @@
 package refactoring.performanceinvoice.domain.performanceinvoice;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PerformanceInvoice {
@@ -8,21 +9,14 @@ public class PerformanceInvoice {
 
     private String customer;
 
-    private int totalAmount;
+    private int amount;
 
-    private int volumeCredits;
+    private int audiencePoints;
 
     private final List<PerformanceInvoiceItem> items = new ArrayList<>();
 
     public PerformanceInvoice(String customer) {
         this.customer = customer;
-    }
-    public void setCustomer(String customer) {
-        this.customer = customer;
-    }
-
-    public void addItem(PerformanceInvoiceItem item) {
-        this.items.add(item);
     }
 
     public void addItem(String name, int amount, int audience) {
@@ -34,22 +28,22 @@ public class PerformanceInvoice {
     }
 
     public List<PerformanceInvoiceItem> getItems() {
-        return items;
+        return Collections.unmodifiableList(items);
     }
 
-    public void setTotalAmount(int totalAmount) {
-        this.totalAmount = totalAmount;
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
-    public void setTotalAudiencePoints(int volumeCredits) {
-        this.volumeCredits = volumeCredits;
+    public void setAudiencePoints(int audiencePoints) {
+        this.audiencePoints = audiencePoints;
     }
 
-    public int getTotalAmount() {
-        return totalAmount;
+    public int getAmount() {
+        return amount;
     }
 
-    public int getVolumeCredits() {
-        return volumeCredits;
+    public int getAudiencePoints() {
+        return audiencePoints;
     }
 }

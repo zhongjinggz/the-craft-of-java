@@ -22,7 +22,6 @@ public class PerformanceSummary {
     }
 
     public void addPerformance(String playId, int audience) {
-        Performance p = new Performance(playId, audience);
-        performances.add(p);
+        performances.add(new Performance(playId, audience));
     }
 }

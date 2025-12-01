@@ -9,15 +9,15 @@ import refactoring.performanceinvoice.domain.performanceinvoice.PerformanceInvoi
 @RestController
 public class PerformanceInvoiceController {
 
-    private final PerformanceInvoiceService performanceInvoiceService;
+    private final PerformanceInvoiceService invoiceService;
 
-    public PerformanceInvoiceController(PerformanceInvoiceService performanceInvoiceService) {
-        this.performanceInvoiceService = performanceInvoiceService;
+    public PerformanceInvoiceController(PerformanceInvoiceService invoiceService) {
+        this.invoiceService = invoiceService;
     }
 
     @PostMapping("/api/performance-invoice")
     public PerformanceInvoice createInvoice(@RequestBody PerformanceSummary performanceSummary) {
-        return performanceInvoiceService.createInvoice(performanceSummary);
+        return invoiceService.createInvoice(performanceSummary);
     }
 
 }

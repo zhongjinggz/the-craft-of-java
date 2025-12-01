@@ -19,9 +19,9 @@ import static org.mockito.Mockito.times;
 class PerformanceInvoiceServiceTest {
 
     @Mock
-    private PerformanceInvoiceRepository PerformanceInvoiceRepository; // 模拟持久化层接口
+    private PerformanceInvoiceRepository PerformanceInvoiceRepository;
 
-    private PlayTypeRepository playTypeRepository; // 模拟持久化层接口
+    private PlayTypeRepository playTypeRepository;
 
     private PerformanceInvoiceService performanceInvoiceService;
 
@@ -50,10 +50,10 @@ class PerformanceInvoiceServiceTest {
         assertEquals(1, invoice.getItems().size());
 
         // 验证总金额：40000 + 1000*(35-30) = 45000
-        assertEquals(45000, invoice.getTotalAmount());
+        assertEquals(45000, invoice.getAmount());
 
         // 验证积分：max(35-30, 0) = 5
-        assertEquals(5, invoice.getVolumeCredits());
+        assertEquals(5, invoice.getAudiencePoints());
 
         // 验证数据库操作
         verify(PerformanceInvoiceRepository, times(1)).save(any(PerformanceInvoice.class));
@@ -77,10 +77,10 @@ class PerformanceInvoiceServiceTest {
         assertEquals(1, invoice.getItems().size());
 
         // 计算预期金额：30000 + 10000 + 500*(25-20) + 300*25 = 30000+10000+2500+7500=50000
-        assertEquals(50000, invoice.getTotalAmount());
+        assertEquals(50000, invoice.getAmount());
 
         // 积分：max(25-30,0)=0 + floorDiv(25,5)=5 => 共5分
-        assertEquals(5, invoice.getVolumeCredits());
+        assertEquals(5, invoice.getAudiencePoints());
 
         verify(PerformanceInvoiceRepository, times(1)).save(any(PerformanceInvoice.class));
     }
@@ -101,10 +101,10 @@ class PerformanceInvoiceServiceTest {
         assertEquals(2, invoice.getItems().size());
 
         // 悲剧：40000；喜剧：30000 + 300*20 = 36000 → 总计76000
-        assertEquals(76000, invoice.getTotalAmount());
+        assertEquals(76000, invoice.getAmount());
 
         // 积分：悲剧 max(0), 喜剧 floorDiv(20/5)=4 → 总共4分
-        assertEquals(4, invoice.getVolumeCredits());
+        assertEquals(4, invoice.getAudiencePoints());
 
         verify(PerformanceInvoiceRepository, times(1)).save(any(PerformanceInvoice.class));
     }
@@ -141,8 +141,8 @@ class PerformanceInvoiceServiceTest {
         assertNotNull(invoice);
         assertEquals("孙七", invoice.getCustomer());
         assertTrue(invoice.getItems().isEmpty());
-        assertEquals(0, invoice.getTotalAmount());
-        assertEquals(0, invoice.getVolumeCredits());
+        assertEquals(0, invoice.getAmount());
+        assertEquals(0, invoice.getAudiencePoints());
 
         verify(PerformanceInvoiceRepository, times(1)).save(any(PerformanceInvoice.class));
     }

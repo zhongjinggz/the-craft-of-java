@@ -2,17 +2,15 @@ package refactoring.performanceinvoice.domain.playtype;
 
 import refactoring.performanceinvoice.application.Performance;
 
-//DONE 避免对 Performance 的依赖
+//TODO 用 Factory 代替 valueOf
 public class Play {
-    String id;
-    String name;
-    String typeString;
-    public PlayType type;
+    private String id;
+    private String name;
+    private PlayType type;
 
     public Play(String id, String name, String typeString) {
         this.id = id;
         this.name = name;
-        this.typeString = typeString;
         this.type = PlayType.valueOf(typeString);
     }
 
@@ -24,15 +22,15 @@ public class Play {
         return name;
     }
 
-    public String getTypeString() {
-        return typeString;
-    }
-
     public int calAmount(int audienceCount) {
         return type.calAmount(audienceCount);
     }
 
     public int calAudiencePoints(Performance perf) {
         return type.calAudiencePoints(perf.getAudienceCount());
+    }
+
+    public PlayType getType() {
+        return type;
     }
 }
