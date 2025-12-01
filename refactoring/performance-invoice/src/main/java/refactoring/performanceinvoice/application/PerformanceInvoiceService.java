@@ -2,6 +2,7 @@ package refactoring.performanceinvoice.application;
 
 import org.springframework.stereotype.Service;
 import refactoring.performanceinvoice.domain.PerformanceInvoice;
+import refactoring.performanceinvoice.domain.PerformanceInvoiceRepository;
 import refactoring.performanceinvoice.domain.Play;
 import refactoring.performanceinvoice.drivenadapter.PerformanceInvoiceRepositoryJdbc;
 
@@ -11,9 +12,9 @@ import java.util.Map;
 @Service
 public class PerformanceInvoiceService {
 
-    private final PerformanceInvoiceRepositoryJdbc repository;
+    private final PerformanceInvoiceRepository repository;
 
-    public PerformanceInvoiceService(PerformanceInvoiceRepositoryJdbc repository) {
+    public PerformanceInvoiceService(PerformanceInvoiceRepository repository) {
         this.repository = repository;
     }
 
