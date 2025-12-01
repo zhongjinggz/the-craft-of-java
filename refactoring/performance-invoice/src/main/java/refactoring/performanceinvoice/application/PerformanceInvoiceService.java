@@ -14,7 +14,8 @@ import java.util.Map;
 //DONE 分层架构
 //DONE 用构造函数进行依赖注入
 //DONE 降低复杂度
-//TODO 解决特性依恋
+//DONE 解决特性依恋
+//TODO 解决调用链
 //TODO 策略模式
 //TODO 重构魔法数字
 //TODO plays 应放在数据库
@@ -47,7 +48,7 @@ public class PerformanceInvoiceService {
             int amount = play.calAmount(perf.getAudienceCount());
             totalAmount += amount;
 
-            int audiencePoints = play.calAudiencePoints(perf.getAudienceCount());
+            int audiencePoints = play.type.calAudiencePoints(perf.getAudienceCount());
             totalAudiencePoints += audiencePoints;
 
             // 添加账单项

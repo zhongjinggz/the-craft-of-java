@@ -22,7 +22,7 @@ class PlayTest {
         // Then
         assertEquals(id, play.getId());
         assertEquals(name, play.getName());
-        assertEquals(type, play.getType());
+        assertEquals(type, play.getTypeString());
     }
 
     @Test
@@ -38,7 +38,7 @@ class PlayTest {
         // Then
         assertNull(play.getId());
         assertNull(play.getName());
-        assertNull(play.getType());
+        assertNull(play.getTypeString());
     }
 
     @Test
@@ -54,6 +54,6 @@ class PlayTest {
         // Then
         assertEquals("", play.getId());
         assertEquals("", play.getName());
-        assertEquals("", play.getType());
+        assertEquals("", play.getTypeString());
     }
 }
