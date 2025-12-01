@@ -31,17 +31,13 @@ public class PerformanceInvoiceService {
 
     public PerformanceInvoice createInvoice(PerformanceSummary performanceSummary) {
 
-        //初始化戏剧列表
-        plays.put("dasheng", new Play("dasheng", "大圣娶亲", "tragedy"));
-        plays.put("007", new Play("007", "国产凌凌漆", "comedy"));
-        plays.put("qiuxiang", new Play("qiuxiang", "唐伯虎点秋香", "comedy"));
+        initPlays();
 
         int totalAmount = 0;
         int totalAudiencePoints = 0;
 
         PerformanceInvoice invoice = new PerformanceInvoice(
                 performanceSummary.getCustomer());
-
 
         for (Performance perf : performanceSummary.getPerformances()) {
             Play play = plays.get(perf.getPlayId());
@@ -53,7 +49,6 @@ public class PerformanceInvoiceService {
             if ("comedy".equals(play.getType())) {
                 totalAudiencePoints += Math.floorDiv(perf.getAudience(), 5);
             }
-
 
             // 添加账单项
             invoice.addItem(play.getName(),thisAmount, perf.getAudience());
@@ -68,7 +63,13 @@ public class PerformanceInvoiceService {
         return invoice;
     }
 
-    private static int calThisAmount(Performance perf, Play play) {
+    private void initPlays() {
+        plays.put("dasheng", new Play("dasheng", "大圣娶亲", "tragedy"));
+        plays.put("007", new Play("007", "国产凌凌漆", "comedy"));
+        plays.put("qiuxiang", new Play("qiuxiang", "唐伯虎点秋香", "comedy"));
+    }
+
+    private int calThisAmount(Performance perf, Play play) {
         int thisAmount;
 
         if (play.getType().equals("tragedy")) {
