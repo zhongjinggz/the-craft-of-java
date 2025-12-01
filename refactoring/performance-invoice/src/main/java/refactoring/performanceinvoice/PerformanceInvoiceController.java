@@ -1,4 +1,4 @@
-package tdd.performancebill;
+package refactoring.performanceinvoice;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -7,15 +7,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-public class PerformanceBillController {
+public class PerformanceInvoiceController {
 
     Map<String, Play> plays = new HashMap<>();
 
     @Autowired
-    PerformanceBillRepository repository;
+    PerformanceInvoiceRepository repository;
 
     @PostMapping("/api/performancebill")
-    public PerformanceBill createBill(@RequestBody PerformanceSummary performanceSummary) {
+    public PerformanceInvoice createBill(@RequestBody PerformanceSummary performanceSummary) {
         //初始化戏剧列表
         plays.put("dasheng", new Play("dasheng", "大圣娶亲", "tragedy"));
         plays.put("007", new Play("007", "国产凌凌漆", "comedy"));
@@ -24,7 +24,7 @@ public class PerformanceBillController {
         int totalAmount = 0;
         int volumeCredits = 0;
 
-        PerformanceBill bill = new PerformanceBill(
+        PerformanceInvoice bill = new PerformanceInvoice(
                 performanceSummary.getCustomer());
 
 

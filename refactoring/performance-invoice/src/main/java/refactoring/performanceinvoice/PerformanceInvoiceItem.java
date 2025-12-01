@@ -1,6 +1,6 @@
-package tdd.performancebill;
+package refactoring.performanceinvoice;
 
-public class PerformanceBillItem {
+public class PerformanceInvoiceItem {
 
     private Long id;
 
@@ -10,7 +10,7 @@ public class PerformanceBillItem {
 
     private int audience;
 
-    public PerformanceBillItem(String name, int amount, int audience) {
+    public PerformanceInvoiceItem(String name, int amount, int audience) {
         this.name = name;
         this.amount = amount;
         this.audience = audience;

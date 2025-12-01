@@ -1,9 +1,9 @@
-package tdd.performancebill;
+package refactoring.performanceinvoice;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class PerformanceBill {
+public class PerformanceInvoice {
     private Long id;
 
     private String customer;
@@ -12,28 +12,28 @@ public class PerformanceBill {
 
     private int volumeCredits;
 
-    private List<PerformanceBillItem> items = new ArrayList<>();
+    private List<PerformanceInvoiceItem> items = new ArrayList<>();
 
-    public PerformanceBill(String customer) {
+    public PerformanceInvoice(String customer) {
         this.customer = customer;
     }
     public void setCustomer(String customer) {
         this.customer = customer;
     }
 
-    public void addItem(PerformanceBillItem item) {
+    public void addItem(PerformanceInvoiceItem item) {
         this.items.add(item);
     }
 
     public void addItem(String name, int amount, int audience) {
-        this.items.add(new PerformanceBillItem(name, amount, audience));
+        this.items.add(new PerformanceInvoiceItem(name, amount, audience));
     }
 
     public String getCustomer() {
         return customer;
     }
 
-    public List<PerformanceBillItem> getItems() {
+    public List<PerformanceInvoiceItem> getItems() {
         return items;
     }
 

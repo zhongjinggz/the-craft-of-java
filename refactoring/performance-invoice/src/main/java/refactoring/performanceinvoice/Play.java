@@ -1,4 +1,4 @@
-package tdd.performancebill;
+package refactoring.performanceinvoice;
 
 public class Play {
     String id;

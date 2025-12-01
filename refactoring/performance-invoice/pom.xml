@@ -5,10 +5,10 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.18</version>
+        <version>2.7.2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>refactoring</groupId>
+    <groupId>the-craft-of-java</groupId>
     <artifactId>performance-invoice</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>performance-invoice</name>
