@@ -6,10 +6,7 @@ import refactoring.performanceinvoice.domain.performanceinvoice.PerformanceInvoi
 import refactoring.performanceinvoice.domain.playtype.Play;
 import refactoring.performanceinvoice.domain.playtype.PlayTypeRepository;
 
-import java.util.HashMap;
-import java.util.Map;
-
-//TODO plays 应放在数据库
+//DONE plays 应放在数据库
 //清理其他类
 
 @Service
@@ -25,11 +22,7 @@ public class PerformanceInvoiceService {
         this.playTypeRepository = playTypeRepository;
     }
 
-    Map<String, Play> plays = new HashMap<>();
-
     public PerformanceInvoice createInvoice(PerformanceSummary performanceSummary) {
-
-        initPlays();
 
         int totalAmount = 0;
         int totalAudiencePoints = 0;
@@ -57,12 +50,6 @@ public class PerformanceInvoiceService {
 
         performanceInvoiceRepository.save(invoice);
         return invoice;
-    }
-
-    private void initPlays() {
-        plays.put("dasheng", new Play("dasheng", "大圣娶亲", "tragedy"));
-        plays.put("007", new Play("007", "国产凌凌漆", "comedy"));
-        plays.put("qiuxiang", new Play("qiuxiang", "唐伯虎点秋香", "comedy"));
     }
 
 }
