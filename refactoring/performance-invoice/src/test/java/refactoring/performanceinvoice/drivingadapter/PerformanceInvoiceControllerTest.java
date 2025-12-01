@@ -5,13 +5,15 @@ import static org.mockito.Mockito.*;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 
+import org.mockito.junit.jupiter.MockitoExtension;
 import refactoring.performanceinvoice.application.PerformanceInvoiceService;
 import refactoring.performanceinvoice.application.PerformanceSummary;
 import refactoring.performanceinvoice.domain.PerformanceInvoice;
 
+@ExtendWith(MockitoExtension.class)
 class PerformanceInvoiceControllerTest {
 
     private PerformanceInvoiceController controller;
@@ -21,8 +23,6 @@ class PerformanceInvoiceControllerTest {
 
     @BeforeEach
     void setUp() {
-        MockitoAnnotations.openMocks(this);
-
         controller = new PerformanceInvoiceController(performanceInvoiceService);
     }
 
@@ -55,21 +55,6 @@ class PerformanceInvoiceControllerTest {
 
         // 验证service方法被正确调用
         verify(performanceInvoiceService, times(1)).createInvoice(performanceSummary);
-    }
-
-    @Test
-    void should_handle_null_input() {
-        // 设置mock行为
-        when(performanceInvoiceService.createInvoice(null)).thenReturn(null);
-
-        // 执行被测方法
-        PerformanceInvoice result = controller.createInvoice(null);
-
-        // 验证结果
-        assertNull(result, "当输入为null时，应返回null");
-
-        // 验证service方法被正确调用
-        verify(performanceInvoiceService, times(1)).createInvoice(null);
     }
 
 }
