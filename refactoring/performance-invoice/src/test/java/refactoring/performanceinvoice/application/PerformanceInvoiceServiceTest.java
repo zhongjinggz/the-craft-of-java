@@ -8,6 +8,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import refactoring.performanceinvoice.domain.performanceinvoice.PerformanceInvoice;
 import refactoring.performanceinvoice.domain.performanceinvoice.PerformanceInvoiceRepository;
 import refactoring.performanceinvoice.domain.playtype.PlayTypeRepository;
+import refactoring.performanceinvoice.drivenadapter.PlayTypeRepositoryMem;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -20,13 +21,14 @@ class PerformanceInvoiceServiceTest {
     @Mock
     private PerformanceInvoiceRepository PerformanceInvoiceRepository; // 模拟持久化层接口
 
-    @Mock
     private PlayTypeRepository playTypeRepository; // 模拟持久化层接口
 
     private PerformanceInvoiceService performanceInvoiceService;
 
     @BeforeEach
     void setUp() {
+
+        playTypeRepository = new PlayTypeRepositoryMem();
 
         performanceInvoiceService = new PerformanceInvoiceService(PerformanceInvoiceRepository,
             playTypeRepository);

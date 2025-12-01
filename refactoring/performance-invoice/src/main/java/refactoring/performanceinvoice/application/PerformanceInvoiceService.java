@@ -38,7 +38,7 @@ public class PerformanceInvoiceService {
             performanceSummary.getCustomer());
 
         for (Performance perf : performanceSummary.getPerformances()) {
-            Play play = plays.get(perf.getPlayId());
+            Play play = playTypeRepository.findById(perf.getPlayId(), this);
 
             int amount = play.calAmount(perf.getAudienceCount());
             totalAmount += amount;
