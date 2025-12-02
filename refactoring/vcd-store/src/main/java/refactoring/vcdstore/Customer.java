@@ -6,30 +6,30 @@ import java.util.List;
 public class Customer {
 
     private final String name;
-    private final List<Rental> rentalList;
+    private final List<Rental> rentals;
 
     public Customer(String name) {
         this.name = name;
-        rentalList = new ArrayList<>();
+        rentals = new ArrayList<>();
     }
 
     public void addRental(Rental rental) {
-        this.rentalList.add(rental);
+        this.rentals.add(rental);
     }
 
     public String getName() {
         return name;
     }
 
-    public List<Rental> getRentalList() {
-        return rentalList;
+    public List<Rental> getRentals() {
+        return rentals;
     }
 
     @Override
     public String toString() {
         return "Customer{" +
                 "name='" + name + '\'' +
-                ", rentalList=" + rentalList +
+                ", rentalList=" + rentals +
                 '}';
     }
 }
