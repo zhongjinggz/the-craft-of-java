@@ -1,9 +1,6 @@
 package refactoring.vcdstore.domain.pricetype;
 
 public abstract class PriceType {
-    public static final int REGULAR = 0;
-    public static final int NEW_RELEASE = 1;
-    public static final int CHILDREN = 2;
     protected final int code;
 
     public PriceType(int code) {

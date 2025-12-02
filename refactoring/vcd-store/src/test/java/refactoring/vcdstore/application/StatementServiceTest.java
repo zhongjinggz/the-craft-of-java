@@ -6,7 +6,9 @@ import org.junit.jupiter.api.Test;
 import refactoring.vcdstore.domain.Customer;
 import refactoring.vcdstore.domain.Movie;
 import refactoring.vcdstore.domain.Rental;
-import refactoring.vcdstore.domain.pricetype.PriceType;
+import refactoring.vcdstore.domain.pricetype.ChildrenPriceType;
+import refactoring.vcdstore.domain.pricetype.NewReleasePriceType;
+import refactoring.vcdstore.domain.pricetype.RegularPriceType;
 
 public class StatementServiceTest {
 
@@ -19,9 +21,9 @@ public class StatementServiceTest {
     @BeforeEach
     void setUp() {
         customer = new Customer("John Doe");
-        regularMovie = new Movie("Regular Movie", PriceType.REGULAR);
-        newReleaseMovie = new Movie("New Release Movie", PriceType.NEW_RELEASE);
-        childrenMovie = new Movie("Children Movie", PriceType.CHILDREN);
+        regularMovie = new Movie("Regular Movie", RegularPriceType.CODE);
+        newReleaseMovie = new Movie("New Release Movie", NewReleasePriceType.CODE);
+        childrenMovie = new Movie("Children Movie", ChildrenPriceType.CODE);
         statementService = new StatementService();
     }
 

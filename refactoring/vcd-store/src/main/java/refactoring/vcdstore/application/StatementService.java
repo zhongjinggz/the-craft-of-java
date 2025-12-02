@@ -30,7 +30,7 @@ import refactoring.vcdstore.domain.Rental;
 //DONE 重构到分层架构
 //DONE 去除魔法数字
 //DONE 避免 String +=
-//TODO 隐藏PriceType中的常量
+//DONE 隐藏PriceType中的常量
 public class StatementService {
     public String printStatement(Customer customer) {
         customer.calRentals();

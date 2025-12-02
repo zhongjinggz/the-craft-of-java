@@ -17,9 +17,9 @@ public class Movie {
 
     private static PriceType buildPriceType(int priceCode) {
         return switch (priceCode) {
-            case PriceType.NEW_RELEASE -> new NewReleasePriceType(priceCode);
-            case PriceType.CHILDREN -> new ChildrenPriceType(priceCode);
-            case PriceType.REGULAR -> new RegularPriceType(priceCode);
+            case NewReleasePriceType.CODE -> new NewReleasePriceType();
+            case ChildrenPriceType.CODE -> new ChildrenPriceType();
+            case RegularPriceType.CODE -> new RegularPriceType();
             default -> throw new IllegalArgumentException("Invalid Price Code");
         };
     }
