@@ -35,13 +35,13 @@ public class PerformanceInvoiceService {
             performanceSummary.getCustomer());
 
         for (Performance perf : performanceSummary.getPerformances()) {
+
             Play play = playTypeRepository.findById(perf.getPlayId(), this);
 
-            int amount = play.calAmount(perf.getAudienceCount());
-
-            int audiencePoints = play.calAudiencePoints(perf);
-
-            invoice.addItem(play.getName(), amount, audiencePoints, perf.getAudienceCount());
+            invoice.addItem(play.getName()
+                , play.calAmount(perf.getAudienceCount())
+                , play.calAudiencePoints(perf.getAudienceCount())
+                , perf.getAudienceCount());
 
         }
 

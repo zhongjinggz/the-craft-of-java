@@ -1,7 +1,5 @@
 package refactoring.performanceinvoice.domain.playtype;
 
-import refactoring.performanceinvoice.application.Performance;
-
 //TODO 用 Factory 代替 valueOf
 public class Play {
     private final String id;
@@ -26,8 +24,8 @@ public class Play {
         return type.calAmount(audienceCount);
     }
 
-    public int calAudiencePoints(Performance perf) {
-        return type.calAudiencePoints(perf.getAudienceCount());
+    public int calAudiencePoints(int audienceCount) {
+        return type.calAudiencePoints(audienceCount);
     }
 
     public PlayType getType() {
