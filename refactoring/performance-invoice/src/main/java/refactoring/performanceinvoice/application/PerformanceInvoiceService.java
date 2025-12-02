@@ -31,8 +31,6 @@ public class PerformanceInvoiceService {
     }
 
     private PerformanceInvoice buildInvoice(PerformanceSummary performanceSummary) {
-        int totalAudiencePoints = 0;
-
         PerformanceInvoice invoice = new PerformanceInvoice(
             performanceSummary.getCustomer());
 
@@ -42,14 +40,11 @@ public class PerformanceInvoiceService {
             int amount = play.calAmount(perf.getAudienceCount());
 
             int audiencePoints = play.calAudiencePoints(perf);
-            totalAudiencePoints += audiencePoints;
 
-            // 添加账单项
-            invoice.addItem(play.getName(), amount, perf.getAudienceCount());
+            invoice.addItem(play.getName(), amount, audiencePoints, perf.getAudienceCount());
 
         }
 
-        invoice.setAudiencePoints(totalAudiencePoints);
         return invoice;
     }
 

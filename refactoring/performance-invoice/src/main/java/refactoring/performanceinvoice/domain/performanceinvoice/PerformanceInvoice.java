@@ -19,9 +19,10 @@ public class PerformanceInvoice {
         this.customer = customer;
     }
 
-    public void addItem(String name, int itemAmount, int audienceCount) {
+    public void addItem(String name, int itemAmount, int itemPoints, int audienceCount) {
         this.items.add(new PerformanceInvoiceItem(name, itemAmount, audienceCount));
         this.amount += itemAmount;
+        this.audiencePoints += itemPoints;
     }
 
     public String getCustomer() {
