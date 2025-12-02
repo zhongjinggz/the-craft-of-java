@@ -2,16 +2,25 @@ package refactoring.vcdstore;
 
 public class Movie {
 
-    public static final int REGULAR = 0;
-    public static final int NEW_RELEASE = 1;
-    public static final int CHILDREN = 2;
-
     private final String title;
     final PriceType priceType;
 
     public Movie(String title, int priceCode) {
         this.title = title;
-        this.priceType = new PriceType(priceCode);
+        this.priceType = buildPriceType(priceCode);
+    }
+
+    private static PriceType buildPriceType(int priceCode) {
+        switch (priceCode) {
+            case PriceType.NEW_RELEASE:
+                return new RegularPriceType(priceCode);
+            case PriceType.CHILDREN:
+                return new RegularPriceType(priceCode);
+            case PriceType.REGULAR:
+                return new RegularPriceType(priceCode);
+            default:
+                throw new IllegalArgumentException("Invalid Price Code");
+        }
     }
 
     public String getTitle() {

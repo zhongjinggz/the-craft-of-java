@@ -15,9 +15,9 @@ public class StatementServiceTest {
     @BeforeEach
     void setUp() {
         customer = new Customer("John Doe");
-        regularMovie = new Movie("Regular Movie", Movie.REGULAR);
-        newReleaseMovie = new Movie("New Release Movie", Movie.NEW_RELEASE);
-        childrenMovie = new Movie("Children Movie", Movie.CHILDREN);
+        regularMovie = new Movie("Regular Movie", PriceType.REGULAR);
+        newReleaseMovie = new Movie("New Release Movie", PriceType.NEW_RELEASE);
+        childrenMovie = new Movie("Children Movie", PriceType.CHILDREN);
         statementService = new StatementService();
     }
 
