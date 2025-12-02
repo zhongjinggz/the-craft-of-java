@@ -7,7 +7,7 @@ import refactoring.performanceinvoice.domain.playtype.Play;
 import refactoring.performanceinvoice.domain.playtype.PlayTypeRepository;
 
 //DONE 清理其他类
-//TODO 让账单自己计算总金额和总积分
+//DOING 过长函数：让账单自己计算总金额和总积分
 
 @Service
 public class PerformanceInvoiceService {
@@ -31,7 +31,6 @@ public class PerformanceInvoiceService {
     }
 
     private PerformanceInvoice buildInvoice(PerformanceSummary performanceSummary) {
-        int totalAmount = 0;
         int totalAudiencePoints = 0;
 
         PerformanceInvoice invoice = new PerformanceInvoice(
@@ -41,7 +40,6 @@ public class PerformanceInvoiceService {
             Play play = playTypeRepository.findById(perf.getPlayId(), this);
 
             int amount = play.calAmount(perf.getAudienceCount());
-            totalAmount += amount;
 
             int audiencePoints = play.calAudiencePoints(perf);
             totalAudiencePoints += audiencePoints;
@@ -51,8 +49,6 @@ public class PerformanceInvoiceService {
 
         }
 
-        //设置账单金额和积分
-        invoice.setAmount(totalAmount);
         invoice.setAudiencePoints(totalAudiencePoints);
         return invoice;
     }
