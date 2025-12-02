@@ -4,6 +4,7 @@ public class Rental {
 
     private final Movie movie;
     private final int daysRented;
+    private double amount;
 
     public Rental(Movie movie, int daysRented) {
         this.movie = movie;
@@ -21,8 +22,16 @@ public class Rental {
     @Override
     public String toString() {
         return "Rental{" +
-                "movie=" + movie +
-                ", daysRented=" + daysRented +
-                '}';
+            "movie=" + movie +
+            ", daysRented=" + daysRented +
+            '}';
+    }
+
+    public void setAmount(double amount) {
+        this.amount = amount;
+    }
+
+    public double getAmount() {
+        return amount;
     }
 }

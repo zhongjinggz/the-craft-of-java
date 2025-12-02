@@ -16,6 +16,8 @@ package refactoring.vcdstore;
 
 //DONE 可变数据
 //DONE 优化命名
+//DONE 缩短循环
+//DOING Rental 自己记录金额
 //TODO 复杂循环
 //TODO 过长函数
 //TODO 重复 Switch
@@ -25,7 +27,7 @@ public class StatementService {
     public String printStatement(Customer customer) {
 
         double totalAmount = 0; // 总消费金。
-        int totalfrequentPoints = 0; // 常客积点
+        int totalPoints = 0; // 常客积点
 
         String result = "Rental Record for " + customer.getName() + "\n";
 
@@ -34,32 +36,36 @@ public class StatementService {
             double thisAmount = calThisAmount(rental);
             totalAmount += thisAmount;
 
-            totalfrequentPoints = calTotalfrequentPoints(rental, totalfrequentPoints);
+            rental.setAmount(thisAmount);
 
-            // show figures for this rental（显示此笔租借记录）
-            result += "\t" + rental.getMovie().getTitle() + "\t"
-                + thisAmount + "\n";
-
+            int thisPoints = calThisPoints(rental);
+            totalPoints += thisPoints;
         }
 
+        // 显示租借记录
+        for (Rental rental : customer.getRentals()) {
+            result += "\t" + rental.getMovie().getTitle() + "\t"
+                + rental.getAmount() + "\n";
+
+        }
         // add footer lines（结尾打印）
         result += "Amount owed is " + totalAmount + "\n";
-        result += "You earned " + totalfrequentPoints
+        result += "You earned " + totalPoints
             + " frequent renter points";
 
         return result;
     }
 
-    private int calTotalfrequentPoints(Rental rental, int totalfrequentPoints) {
-        // add frequent renter points （累计常客积点）
-        totalfrequentPoints++;
+    // 计算常客积点
+    private int calThisPoints(Rental rental) {
+        int thisPoints = 1;
 
         // add bonus for a two days new release rental
         if ((rental.getMovie().getPriceCode() == Movie.NEW_RELEASE) &&
             rental.getDaysRented() > 1) {
-            totalfrequentPoints++;
+            thisPoints++;
         }
-        return totalfrequentPoints;
+        return thisPoints;
     }
 
     private double calThisAmount(Rental rental) {
