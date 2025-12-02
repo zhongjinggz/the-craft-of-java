@@ -1,16 +1,12 @@
 package refactoring.vcdstore;
 
-public class PriceType {
-    private int code;
+public class PriceType extends AbstractPriceType {
 
     public PriceType(int code) {
-        this.code = code;
+        super(code);
     }
 
-    public int getCode() {
-        return code;
-    }
-
+    @Override
     double calAmount(int daysRented) {
         double thisAmount = 0;
 
@@ -36,6 +32,7 @@ public class PriceType {
         return thisAmount;
     }
 
+    @Override
     int calFrequentPoints(int daysRented) {
         int thisPoints = 1;
 

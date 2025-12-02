@@ -22,8 +22,9 @@ package refactoring.vcdstore;
 //DONE Customer 自己记录总金额和总点数
 //DONE 过长函数
 //DONE 特性依恋
-//TODO 重复 Switch
-//TODO 基本类型偏执
+//DONE 基本类型偏执
+//DOING 重复 Switch
+//TODO 重构到分层架构
 public class StatementService {
     public String printStatement(Customer customer) {
         customer.calRentals();
