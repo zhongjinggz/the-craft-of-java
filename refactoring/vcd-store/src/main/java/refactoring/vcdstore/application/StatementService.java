@@ -29,7 +29,7 @@ import refactoring.vcdstore.domain.Rental;
 //DONE 重复 Switch
 //DONE 重构到分层架构
 //DONE 去除魔法数字
-//TODO 避免 String +=
+//DONE 避免 String +=
 public class StatementService {
     public String printStatement(Customer customer) {
         customer.calRentals();
@@ -37,19 +37,22 @@ public class StatementService {
     }
 
     private String buildStatement(Customer customer) {
-        String result = "Rental Record for " + customer.getName() + "\n";
+        //表头
+        StringBuilder builder = new StringBuilder("Rental Record for ")
+            .append(customer.getName())
+            .append("\n");
 
-        // 显示租借记录
+        // 租借记录
         for (Rental rental : customer.getRentals()) {
-            result += "\t" + rental.getMovie().getTitle() + "\t"
-                + rental.getAmount() + "\n";
-
+            builder.append("\t").append(rental.getMovie().getTitle())
+                .append("\t").append(rental.getAmount())
+                .append("\n");
         }
-        // add footer lines（结尾打印）
-        result += "Amount owed is " + customer.getAmount() + "\n";
-        result += "You earned " + customer.getFrequentPoints()
-            + " frequent renter points";
-        return result;
-    }
 
+        // 表尾
+        builder.append("Amount owed is ").append(customer.getAmount()).append("\n")
+            .append("You earned ").append(customer.getFrequentPoints()).append(" frequent renter points");
+
+        return builder.toString();
+    }
 }
