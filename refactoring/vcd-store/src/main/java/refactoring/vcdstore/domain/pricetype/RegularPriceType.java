@@ -2,20 +2,25 @@ package refactoring.vcdstore.domain.pricetype;
 
 public class RegularPriceType extends PriceType {
 
+    private static final int BASE_PRICE = 2;
+    private static final int AMOUNT_THRESHOLD = 2;
+    private static final double UNIT_PRICE = 1.5;
+    private static final int DEFAULT_POINTS = 1;
+
     public RegularPriceType(int code) {
         super(code);
     }
 
     @Override
     public double calAmount(int daysRented) {
-        double amount = 2;
-        if (daysRented > 2)
-            amount += (daysRented - 2) * 1.5;
+        double amount = BASE_PRICE;
+        if (daysRented > AMOUNT_THRESHOLD)
+            amount += (daysRented - AMOUNT_THRESHOLD) * UNIT_PRICE;
         return amount;
     }
 
     @Override
     public int calFrequentPoints(int daysRented) {
-        return 1;
+        return DEFAULT_POINTS;
     }
 }

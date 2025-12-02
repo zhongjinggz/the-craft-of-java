@@ -28,7 +28,7 @@ import refactoring.vcdstore.domain.Rental;
 //DONE 基本类型偏执
 //DONE 重复 Switch
 //DONE 重构到分层架构
-//TODO 去除魔法数字
+//DONE 去除魔法数字
 //TODO 避免 String +=
 public class StatementService {
     public String printStatement(Customer customer) {
