@@ -30,4 +30,11 @@ public class Movie {
             '}';
     }
 
+    int calFrequentPoints(int daysRented) {
+        return priceType.calFrequentPoints(daysRented);
+    }
+
+    double calAmount(int daysRented) {
+        return priceType.calAmount(daysRented);
+    }
 }
