@@ -1,4 +1,4 @@
-package refactoring.vcdstore;
+package refactoring.vcdstore.domain.pricetype;
 
 public class NewReleasePriceType extends PriceType {
 
@@ -7,12 +7,12 @@ public class NewReleasePriceType extends PriceType {
     }
 
     @Override
-    double calAmount(int daysRented) {
+    public double calAmount(int daysRented) {
         return daysRented * 3;
     }
 
     @Override
-    int calFrequentPoints(int daysRented) {
+    public int calFrequentPoints(int daysRented) {
         int thisPoints = 1;
 
         if ( daysRented > 1) {

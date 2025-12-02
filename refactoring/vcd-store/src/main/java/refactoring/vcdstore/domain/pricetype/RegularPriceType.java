@@ -1,4 +1,4 @@
-package refactoring.vcdstore;
+package refactoring.vcdstore.domain.pricetype;
 
 public class RegularPriceType extends PriceType {
 
@@ -7,7 +7,7 @@ public class RegularPriceType extends PriceType {
     }
 
     @Override
-    double calAmount(int daysRented) {
+    public double calAmount(int daysRented) {
         double amount = 2;
         if (daysRented > 2)
             amount += (daysRented - 2) * 1.5;
@@ -15,7 +15,7 @@ public class RegularPriceType extends PriceType {
     }
 
     @Override
-    int calFrequentPoints(int daysRented) {
+    public int calFrequentPoints(int daysRented) {
         return 1;
     }
 }

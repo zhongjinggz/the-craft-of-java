@@ -1,8 +1,12 @@
-package refactoring.vcdstore;
+package refactoring.vcdstore.application;
 
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import refactoring.vcdstore.domain.Customer;
+import refactoring.vcdstore.domain.Movie;
+import refactoring.vcdstore.domain.Rental;
+import refactoring.vcdstore.domain.pricetype.PriceType;
 
 public class StatementServiceTest {
 

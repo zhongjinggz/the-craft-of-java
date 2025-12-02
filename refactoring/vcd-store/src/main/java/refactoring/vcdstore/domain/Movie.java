@@ -1,4 +1,9 @@
-package refactoring.vcdstore;
+package refactoring.vcdstore.domain;
+
+import refactoring.vcdstore.domain.pricetype.ChildrenPriceType;
+import refactoring.vcdstore.domain.pricetype.NewReleasePriceType;
+import refactoring.vcdstore.domain.pricetype.PriceType;
+import refactoring.vcdstore.domain.pricetype.RegularPriceType;
 
 public class Movie {
 

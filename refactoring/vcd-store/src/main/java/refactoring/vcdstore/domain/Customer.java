@@ -1,4 +1,4 @@
-package refactoring.vcdstore;
+package refactoring.vcdstore.domain;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +44,7 @@ public class Customer {
                 '}';
     }
 
-    void calRentals() {
+    public void calRentals() {
         this.amount = 0; // 总消费金。
         this.frequentPoints = 0; // 常客积点
 

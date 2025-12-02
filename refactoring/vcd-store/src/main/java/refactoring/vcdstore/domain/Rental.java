@@ -1,4 +1,4 @@
-package refactoring.vcdstore;
+package refactoring.vcdstore.domain;
 
 public class Rental {
 

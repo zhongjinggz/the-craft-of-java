@@ -1,4 +1,7 @@
-package refactoring.vcdstore;
+package refactoring.vcdstore.application;
+
+import refactoring.vcdstore.domain.Customer;
+import refactoring.vcdstore.domain.Rental;
 
 /**
  * 影片出租价格计算方式：
@@ -23,9 +26,10 @@ package refactoring.vcdstore;
 //DONE 过长函数
 //DONE 特性依恋
 //DONE 基本类型偏执
-//DOING 重复 Switch
-//TODO 重构到分层架构
+//DONE 重复 Switch
+//DONE 重构到分层架构
 //TODO 去除魔法数字
+//TODO 避免 String +=
 public class StatementService {
     public String printStatement(Customer customer) {
         customer.calRentals();

@@ -1,4 +1,4 @@
-package refactoring.vcdstore;
+package refactoring.vcdstore.domain.pricetype;
 
 public abstract class PriceType {
     public static final int REGULAR = 0;
@@ -14,7 +14,7 @@ public abstract class PriceType {
         return code;
     }
 
-    abstract double calAmount(int daysRented);
+    public abstract double calAmount(int daysRented);
 
-    abstract int calFrequentPoints(int daysRented);
+    public abstract int calFrequentPoints(int daysRented);
 }
