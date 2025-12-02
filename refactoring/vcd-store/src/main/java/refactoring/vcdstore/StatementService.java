@@ -21,6 +21,7 @@ package refactoring.vcdstore;
 //DONE 复杂循环
 //DONE Customer 自己记录总金额和总点数
 //DONE 过长函数
+//DOING 特性依恋
 //TODO 重复 Switch
 //TODO 基本类型偏执
 public class StatementService {
@@ -49,56 +50,15 @@ public class StatementService {
         double totalAmount = 0; // 总消费金。
         int totalPoints = 0; // 常客积点
 
-
         for (Rental rental : customer.getRentals()) {
 
-            double thisAmount = calThisAmount(rental);
-            totalAmount += thisAmount;
+            totalAmount += rental.calThisAmount();
 
-            rental.setAmount(thisAmount);
-
-            int thisPoints = calThisPoints(rental);
-            totalPoints += thisPoints;
+            totalPoints += rental.calThisPoints();
         }
 
         customer.setAmount(totalAmount);
         customer.setFrequentPoints(totalPoints);
     }
 
-    // 计算常客积点
-    private int calThisPoints(Rental rental) {
-        int thisPoints = 1;
-
-        // add bonus for a two days new release rental
-        if ((rental.getMovie().getPriceCode() == Movie.NEW_RELEASE) &&
-            rental.getDaysRented() > 1) {
-            thisPoints++;
-        }
-        return thisPoints;
-    }
-
-    private double calThisAmount(Rental rental) {
-        double thisAmount = 0;
-
-        // 取得影片出租价格
-        switch (rental.getMovie().getPriceCode()) {
-            // 普通片
-            case Movie.REGULAR:
-                thisAmount += 2;
-                if (rental.getDaysRented() > 2)
-                    thisAmount += (rental.getDaysRented() - 2) * 1.5;
-                break;
-            // 新片
-            case Movie.NEW_RELEASE:
-                thisAmount += rental.getDaysRented() * 3;
-                break;
-            // 儿童片
-            case Movie.CHILDREN:
-                thisAmount += 1.5;
-                if (rental.getDaysRented() > 3)
-                    thisAmount += (rental.getDaysRented() - 3) * 1.5;
-                break;
-        }
-        return thisAmount;
-    }
 }
