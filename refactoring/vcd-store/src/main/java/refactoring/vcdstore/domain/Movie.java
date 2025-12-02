@@ -16,24 +16,16 @@ public class Movie {
     }
 
     private static PriceType buildPriceType(int priceCode) {
-        switch (priceCode) {
-            case PriceType.NEW_RELEASE:
-                return new NewReleasePriceType(priceCode);
-            case PriceType.CHILDREN:
-                return new ChildrenPriceType(priceCode);
-            case PriceType.REGULAR:
-                return new RegularPriceType(priceCode);
-            default:
-                throw new IllegalArgumentException("Invalid Price Code");
-        }
+        return switch (priceCode) {
+            case PriceType.NEW_RELEASE -> new NewReleasePriceType(priceCode);
+            case PriceType.CHILDREN -> new ChildrenPriceType(priceCode);
+            case PriceType.REGULAR -> new RegularPriceType(priceCode);
+            default -> throw new IllegalArgumentException("Invalid Price Code");
+        };
     }
 
     public String getTitle() {
         return title;
-    }
-
-    public int getPriceCode() {
-        return priceType.getCode();
     }
 
     @Override

@@ -16,20 +16,12 @@ public class Rental {
         return movie;
     }
 
-    public int getDaysRented() {
-        return daysRented;
-    }
-
     @Override
     public String toString() {
         return "Rental{" +
             "movie=" + movie +
             ", daysRented=" + daysRented +
             '}';
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
     }
 
     public double getAmount() {
