@@ -20,17 +20,35 @@ package refactoring.vcdstore;
 //DONE Rental 自己记录金额
 //DONE 复杂循环
 //DONE Customer 自己记录总金额和总点数
-//TODO 过长函数
+//DONE 过长函数
 //TODO 重复 Switch
 //TODO 基本类型偏执
 public class StatementService {
-
     public String printStatement(Customer customer) {
+        calCustomerRentals(customer);
+        return buildStatement(customer);
+    }
 
+    private String buildStatement(Customer customer) {
+        String result = "Rental Record for " + customer.getName() + "\n";
+
+        // 显示租借记录
+        for (Rental rental : customer.getRentals()) {
+            result += "\t" + rental.getMovie().getTitle() + "\t"
+                + rental.getAmount() + "\n";
+
+        }
+        // add footer lines（结尾打印）
+        result += "Amount owed is " + customer.getAmount() + "\n";
+        result += "You earned " + customer.getFrequentPoints()
+            + " frequent renter points";
+        return result;
+    }
+
+    private void calCustomerRentals(Customer customer) {
         double totalAmount = 0; // 总消费金。
         int totalPoints = 0; // 常客积点
 
-        String result = "Rental Record for " + customer.getName() + "\n";
 
         for (Rental rental : customer.getRentals()) {
 
@@ -45,19 +63,6 @@ public class StatementService {
 
         customer.setAmount(totalAmount);
         customer.setFrequentPoints(totalPoints);
-
-        // 显示租借记录
-        for (Rental rental : customer.getRentals()) {
-            result += "\t" + rental.getMovie().getTitle() + "\t"
-                + rental.getAmount() + "\n";
-
-        }
-        // add footer lines（结尾打印）
-        result += "Amount owed is " + customer.getAmount() + "\n";
-        result += "You earned " + customer.getFrequentPoints()
-            + " frequent renter points";
-
-        return result;
     }
 
     // 计算常客积点
