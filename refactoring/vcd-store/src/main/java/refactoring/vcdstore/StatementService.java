@@ -5,7 +5,7 @@ package refactoring.vcdstore;
  * <p>
  * REGULAR：起步价2元，租超过2天后，每天1.5元
  * NEW_RELEASE：每天3元，不设起步价
- * CHILDRENS：起步价1.5元，租超过3天后，每天1.5元
+ * CHILDREN：起步价1.5元，租超过3天后，每天1.5元
  * <p>
  * <p>
  * 常客积分计算方式：
@@ -13,6 +13,13 @@ package refactoring.vcdstore;
  * 每租1张影碟得1积分，
  * 如果是新片而且租超过1天的话，再加1积分
  */
+
+
+//TODO 优化命名
+//TODO 复杂循环
+//TODO 过长函数
+//TODO 重复 Switch
+//TODO 基本类型偏执
 public class StatementService {
 
     public String printStatement(Customer customer) {
@@ -39,7 +46,7 @@ public class StatementService {
                     thisAmount += rental.getDaysRented() * 3;
                     break;
                 // 儿童
-                case Movie.CHILDRENS:
+                case Movie.CHILDREN:
                     thisAmount += 1.5;
                     if (rental.getDaysRented() > 3)
                         thisAmount += (rental.getDaysRented() - 3) * 1.5;
@@ -49,23 +56,23 @@ public class StatementService {
             // add frequent renter points （累计常客积点。
             frequentRenterPoints++;
 
-            // add bonus for a two day new release rental
+            // add bonus for a two days new release rental
             if ((rental.getMovie().getPriceCode() == Movie.NEW_RELEASE) &&
-                    rental.getDaysRented() > 1)
+                rental.getDaysRented() > 1)
 
                 frequentRenterPoints++;
 
             // show figures for this rental（显示此笔租借记录）
             result += "\t" + rental.getMovie().getTitle() + "\t"
-                    + String.valueOf(thisAmount) + "\n";
+                + thisAmount + "\n";
 
             totalAmount += thisAmount;
         }
 
         // add footer lines（结尾打印）
-        result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
-        result += "You earned " + String.valueOf(frequentRenterPoints)
-                + " frequent renter points";
+        result += "Amount owed is " + totalAmount + "\n";
+        result += "You earned " + frequentRenterPoints
+            + " frequent renter points";
 
         return result;
     }

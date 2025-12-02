@@ -17,7 +17,7 @@ public class StatementServiceTest {
         customer = new Customer("John Doe");
         regularMovie = new Movie("Regular Movie", Movie.REGULAR);
         newReleaseMovie = new Movie("New Release Movie", Movie.NEW_RELEASE);
-        childrenMovie = new Movie("Children Movie", Movie.CHILDRENS);
+        childrenMovie = new Movie("Children Movie", Movie.CHILDREN);
         statementService = new StatementService();
     }
 

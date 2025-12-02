@@ -5,8 +5,8 @@ import java.util.List;
 
 public class Customer {
 
-    private String name;
-    private List<Rental> rentalList;
+    private final String name;
+    private final List<Rental> rentalList;
 
     public Customer(String name) {
         this.name = name;
