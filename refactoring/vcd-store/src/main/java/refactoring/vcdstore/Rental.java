@@ -38,16 +38,9 @@ public class Rental {
 
     // 计算常客积点
     int calFrequentPoints() {
-        int thisPoints = 1;
 
-        // add bonus for a two days new release rental
-        if ((getMovie().getPriceCode() == Movie.NEW_RELEASE) &&
-            getDaysRented() > 1) {
-            thisPoints++;
-        }
-
-       this.frequentPoints = thisPoints;
-        return thisPoints;
+        this.frequentPoints = movie.calFrequentPoints(daysRented);
+        return this.frequentPoints;
     }
 
     double calAmount() {

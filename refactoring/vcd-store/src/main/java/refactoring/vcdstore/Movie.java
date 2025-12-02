@@ -25,9 +25,9 @@ public class Movie {
     @Override
     public String toString() {
         return "Movie{" +
-                "title='" + title + '\'' +
-                ", priceCode=" + priceType.getCode() +
-                '}';
+            "title='" + title + '\'' +
+            ", priceCode=" + priceType.getCode() +
+            '}';
     }
 
     double calAmount(int daysRented) {
@@ -53,5 +53,15 @@ public class Movie {
                 break;
         }
         return thisAmount;
+    }
+
+    int calFrequentPoints(int daysRented) {
+        int thisPoints = 1;
+
+        if ((priceType.getCode() == NEW_RELEASE) &&
+            daysRented > 1) {
+            thisPoints++;
+        }
+        return thisPoints;
     }
 }
