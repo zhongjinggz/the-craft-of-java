@@ -37,7 +37,7 @@ public class Rental {
     }
 
     // 计算常客积点
-    int calThisPoints() {
+    int calFrequentPoints() {
         int thisPoints = 1;
 
         // add bonus for a two days new release rental
@@ -50,7 +50,7 @@ public class Rental {
         return thisPoints;
     }
 
-    double calThisAmount() {
+    double calAmount() {
         double thisAmount = 0;
 
         // 取得影片出租价格

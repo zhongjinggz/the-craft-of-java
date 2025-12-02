@@ -13,16 +13,8 @@ public class Customer {
         return frequentPoints;
     }
 
-    public void setFrequentPoints(int frequentPoints) {
-        this.frequentPoints = frequentPoints;
-    }
-
     public double getAmount() {
         return amount;
-    }
-
-    public void setAmount(double amount) {
-        this.amount = amount;
     }
 
     private int frequentPoints;
@@ -50,5 +42,15 @@ public class Customer {
                 "name='" + name + '\'' +
                 ", rentalList=" + rentals +
                 '}';
+    }
+
+    void calRentals() {
+        this.amount = 0; // 总消费金。
+        this.frequentPoints = 0; // 常客积点
+
+        for (Rental rental : getRentals()) {
+            this.amount += rental.calAmount();
+            this.frequentPoints += rental.calFrequentPoints();
+        }
     }
 }

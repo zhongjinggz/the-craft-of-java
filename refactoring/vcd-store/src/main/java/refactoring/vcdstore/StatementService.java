@@ -26,7 +26,7 @@ package refactoring.vcdstore;
 //TODO 基本类型偏执
 public class StatementService {
     public String printStatement(Customer customer) {
-        calCustomerRentals(customer);
+        customer.calRentals();
         return buildStatement(customer);
     }
 
@@ -44,21 +44,6 @@ public class StatementService {
         result += "You earned " + customer.getFrequentPoints()
             + " frequent renter points";
         return result;
-    }
-
-    private void calCustomerRentals(Customer customer) {
-        double totalAmount = 0; // 总消费金。
-        int totalPoints = 0; // 常客积点
-
-        for (Rental rental : customer.getRentals()) {
-
-            totalAmount += rental.calThisAmount();
-
-            totalPoints += rental.calThisPoints();
-        }
-
-        customer.setAmount(totalAmount);
-        customer.setFrequentPoints(totalPoints);
     }
 
 }
