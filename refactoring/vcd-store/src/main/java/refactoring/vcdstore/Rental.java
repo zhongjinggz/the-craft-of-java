@@ -51,28 +51,8 @@ public class Rental {
     }
 
     double calAmount() {
-        double thisAmount = 0;
-
-        // 取得影片出租价格
-        switch (getMovie().getPriceCode()) {
-            // 普通片
-            case Movie.REGULAR:
-                thisAmount += 2;
-                if (getDaysRented() > 2)
-                    thisAmount += (getDaysRented() - 2) * 1.5;
-                break;
-            // 新片
-            case Movie.NEW_RELEASE:
-                thisAmount += getDaysRented() * 3;
-                break;
-            // 儿童片
-            case Movie.CHILDREN:
-                thisAmount += 1.5;
-                if (getDaysRented() > 3)
-                    thisAmount += (getDaysRented() - 3) * 1.5;
-                break;
-        }
-        this.amount = thisAmount;
-        return thisAmount;
+        this.amount = movie.calAmount(daysRented);
+        return this.amount;
     }
+
 }
