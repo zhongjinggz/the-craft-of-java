@@ -7,7 +7,7 @@ public class Movie {
     public static final int CHILDREN = 2;
 
     private final String title;
-    private final PriceType priceType;
+    final PriceType priceType;
 
     public Movie(String title, int priceCode) {
         this.title = title;
@@ -30,38 +30,4 @@ public class Movie {
             '}';
     }
 
-    double calAmount(int daysRented) {
-        double thisAmount = 0;
-
-        // 取得影片出租价格
-        switch (priceType.getCode()) {
-            // 普通片
-            case REGULAR:
-                thisAmount += 2;
-                if (daysRented > 2)
-                    thisAmount += (daysRented - 2) * 1.5;
-                break;
-            // 新片
-            case NEW_RELEASE:
-                thisAmount += daysRented * 3;
-                break;
-            // 儿童片
-            case CHILDREN:
-                thisAmount += 1.5;
-                if (daysRented > 3)
-                    thisAmount += (daysRented - 3) * 1.5;
-                break;
-        }
-        return thisAmount;
-    }
-
-    int calFrequentPoints(int daysRented) {
-        int thisPoints = 1;
-
-        if ((priceType.getCode() == NEW_RELEASE) &&
-            daysRented > 1) {
-            thisPoints++;
-        }
-        return thisPoints;
-    }
 }

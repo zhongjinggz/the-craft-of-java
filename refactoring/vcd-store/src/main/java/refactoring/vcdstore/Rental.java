@@ -39,12 +39,12 @@ public class Rental {
     // 计算常客积点
     int calFrequentPoints() {
 
-        this.frequentPoints = movie.calFrequentPoints(daysRented);
+        this.frequentPoints = movie.priceType.calFrequentPoints(daysRented);
         return this.frequentPoints;
     }
 
     double calAmount() {
-        this.amount = movie.calAmount(daysRented);
+        this.amount = movie.priceType.calAmount(daysRented);
         return this.amount;
     }
 
