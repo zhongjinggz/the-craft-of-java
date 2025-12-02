@@ -13,9 +13,9 @@ public class Movie {
     private static PriceType buildPriceType(int priceCode) {
         switch (priceCode) {
             case PriceType.NEW_RELEASE:
-                return new RegularPriceType(priceCode);
+                return new NewReleasePriceType(priceCode);
             case PriceType.CHILDREN:
-                return new RegularPriceType(priceCode);
+                return new ChildrenPriceType(priceCode);
             case PriceType.REGULAR:
                 return new RegularPriceType(priceCode);
             default:
