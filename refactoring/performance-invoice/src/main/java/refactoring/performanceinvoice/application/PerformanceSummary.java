@@ -7,8 +7,6 @@ public class PerformanceSummary {
     private String customer;
     List<Performance> performances = new ArrayList<>();
 
-    public PerformanceSummary() {}
-
     public PerformanceSummary(String customer) {
         this.customer = customer;
     }

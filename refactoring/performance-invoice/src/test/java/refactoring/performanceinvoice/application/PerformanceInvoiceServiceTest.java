@@ -11,9 +11,7 @@ import refactoring.performanceinvoice.domain.playtype.PlayTypeRepository;
 import refactoring.performanceinvoice.drivenadapter.PlayTypeRepositoryMem;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
-import static org.mockito.Mockito.times;
 
 @ExtendWith(MockitoExtension.class)
 class PerformanceInvoiceServiceTest {

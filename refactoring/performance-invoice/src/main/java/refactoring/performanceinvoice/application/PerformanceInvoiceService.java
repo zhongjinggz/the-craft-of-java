@@ -17,6 +17,7 @@ import refactoring.performanceinvoice.domain.playtype.PlayTypeRepository;
 //DONE: 魔法数字
 //DONE: plays 不应每次hardcode初始化
 //DONE: 调用链 play.getType().calAmount(perf.getAudience());
+//DONE: 可变属性
 //DONE 清理其他类
 
 @Service

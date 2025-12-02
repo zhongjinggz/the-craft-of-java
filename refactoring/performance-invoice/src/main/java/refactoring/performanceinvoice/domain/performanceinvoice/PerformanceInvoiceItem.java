@@ -4,11 +4,11 @@ public class PerformanceInvoiceItem {
 
     private Long id;
 
-    private String name;
+    private final String name;
 
-    private int amount;
+    private final int amount;
 
-    private int audienceCount;
+    private final int audienceCount;
 
     public PerformanceInvoiceItem(String name, int amount, int audienceCount) {
         this.name = name;

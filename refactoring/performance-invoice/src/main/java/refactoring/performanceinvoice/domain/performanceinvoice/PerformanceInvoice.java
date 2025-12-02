@@ -7,7 +7,7 @@ import java.util.List;
 public class PerformanceInvoice {
     private Long id;
 
-    private String customer;
+    private final String customer;
 
     private int amount;
 
