@@ -17,8 +17,9 @@ package refactoring.vcdstore;
 //DONE 可变数据
 //DONE 优化命名
 //DONE 缩短循环
-//DOING Rental 自己记录金额
-//TODO 复杂循环
+//DONE Rental 自己记录金额
+//DONE 复杂循环
+//DOING Customer 自己记录总金额和总点数
 //TODO 过长函数
 //TODO 重复 Switch
 //TODO 基本类型偏执
