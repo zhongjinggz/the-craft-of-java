@@ -19,7 +19,7 @@ package refactoring.vcdstore;
 //DONE 缩短循环
 //DONE Rental 自己记录金额
 //DONE 复杂循环
-//DOING Customer 自己记录总金额和总点数
+//DONE Customer 自己记录总金额和总点数
 //TODO 过长函数
 //TODO 重复 Switch
 //TODO 基本类型偏执
@@ -43,6 +43,9 @@ public class StatementService {
             totalPoints += thisPoints;
         }
 
+        customer.setAmount(totalAmount);
+        customer.setFrequentPoints(totalPoints);
+
         // 显示租借记录
         for (Rental rental : customer.getRentals()) {
             result += "\t" + rental.getMovie().getTitle() + "\t"
@@ -50,8 +53,8 @@ public class StatementService {
 
         }
         // add footer lines（结尾打印）
-        result += "Amount owed is " + totalAmount + "\n";
-        result += "You earned " + totalPoints
+        result += "Amount owed is " + customer.getAmount() + "\n";
+        result += "You earned " + customer.getFrequentPoints()
             + " frequent renter points";
 
         return result;
