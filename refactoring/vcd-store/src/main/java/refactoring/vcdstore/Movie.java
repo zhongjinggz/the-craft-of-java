@@ -7,11 +7,11 @@ public class Movie {
     public static final int CHILDREN = 2;
 
     private final String title;
-    private final int priceCode;
+    private final PriceType priceType;
 
     public Movie(String title, int priceCode) {
         this.title = title;
-        this.priceCode = priceCode;
+        this.priceType = new PriceType(priceCode);
     }
 
     public String getTitle() {
@@ -19,14 +19,14 @@ public class Movie {
     }
 
     public int getPriceCode() {
-        return priceCode;
+        return priceType.getCode();
     }
 
     @Override
     public String toString() {
         return "Movie{" +
                 "title='" + title + '\'' +
-                ", priceCode=" + priceCode +
+                ", priceCode=" + priceType.getCode() +
                 '}';
     }
 }

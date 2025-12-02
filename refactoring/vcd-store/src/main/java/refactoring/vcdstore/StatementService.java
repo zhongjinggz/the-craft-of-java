@@ -21,7 +21,7 @@ package refactoring.vcdstore;
 //DONE 复杂循环
 //DONE Customer 自己记录总金额和总点数
 //DONE 过长函数
-//DOING 特性依恋
+//DONE 特性依恋
 //TODO 重复 Switch
 //TODO 基本类型偏执
 public class StatementService {
