@@ -6,7 +6,8 @@ import refactoring.performanceinvoice.domain.performanceinvoice.PerformanceInvoi
 import refactoring.performanceinvoice.domain.playtype.Play;
 import refactoring.performanceinvoice.domain.playtype.PlayTypeRepository;
 
-//TODO 清理其他类
+//DONE 清理其他类
+//TODO 让账单自己计算总金额和总积分
 
 @Service
 public class PerformanceInvoiceService {
@@ -23,6 +24,13 @@ public class PerformanceInvoiceService {
 
     public PerformanceInvoice createInvoice(PerformanceSummary performanceSummary) {
 
+        PerformanceInvoice invoice = buildInvoice(performanceSummary);
+
+        performanceInvoiceRepository.save(invoice);
+        return invoice;
+    }
+
+    private PerformanceInvoice buildInvoice(PerformanceSummary performanceSummary) {
         int totalAmount = 0;
         int totalAudiencePoints = 0;
 
@@ -46,8 +54,6 @@ public class PerformanceInvoiceService {
         //设置账单金额和积分
         invoice.setAmount(totalAmount);
         invoice.setAudiencePoints(totalAudiencePoints);
-
-        performanceInvoiceRepository.save(invoice);
         return invoice;
     }
 
