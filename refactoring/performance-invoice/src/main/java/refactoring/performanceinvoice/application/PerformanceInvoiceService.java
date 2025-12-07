@@ -19,17 +19,14 @@ public class PerformanceInvoiceService {
 
     Map<String, Play> plays = new HashMap<>();
     public PerformanceInvoice createInvoice(PerformanceSummary performanceSummary) {
-        //初始化戏剧列表
-        plays.put("dasheng", new Play("dasheng", "大圣娶亲", "tragedy"));
-        plays.put("007", new Play("007", "国产凌凌漆", "comedy"));
-        plays.put("qiuxiang", new Play("qiuxiang", "唐伯虎点秋香", "comedy"));
+        initPlays();
 
         PerformanceInvoice invoice = new PerformanceInvoice(
                 performanceSummary.getCustomerName());
 
 
         for (Performance perf : performanceSummary.getPerformances()) {
-            Play play = plays.get(perf.getPlayId());
+            Play play = findPlayById(perf.getPlayId());
 
             invoice.addItem(play
                 , play.calAmount(perf)
@@ -41,6 +38,17 @@ public class PerformanceInvoiceService {
 
         repository.save(invoice);
         return invoice;
+    }
+
+    private Play findPlayById(String playId) {
+        return plays.get(playId);
+    }
+
+    private void initPlays() {
+        //初始化戏剧列表
+        plays.put("dasheng", new Play("dasheng", "大圣娶亲", "tragedy"));
+        plays.put("007", new Play("007", "国产凌凌漆", "comedy"));
+        plays.put("qiuxiang", new Play("qiuxiang", "唐伯虎点秋香", "comedy"));
     }
 
 }
