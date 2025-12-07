@@ -3,7 +3,6 @@ package refactoring.performanceinvoice.domain;
 public class Play {
     private String id;
     private String name;
-    private String typeName;
 
     private PlayType playType;
 
@@ -28,7 +27,7 @@ public class Play {
 
     public int calPoints(int audienceCount) {
         int points = Math.max(audienceCount - 30, 0);
-        if ("comedy".equals(getTypeName())) {
+        if ("comedy".equals(playType.getName())) {
             points += Math.floorDiv(audienceCount, 5);
         }
         return points;
@@ -37,12 +36,12 @@ public class Play {
     public int calAmount(int audience) {
         int amount;
 
-        if (getTypeName().equals("tragedy")) {
+        if (playType.getName().equals("tragedy")) {
             amount = 40000;
             if (audience > 30) {
                 amount += 1000 * (audience - 30);
             }
-        } else if (getTypeName().equals("comedy")) {
+        } else if (playType.getName().equals("comedy")) {
             amount = 30000;
             if (audience > 20) {
                 amount += 10000 + 500 * (audience - 20);
@@ -55,6 +54,5 @@ public class Play {
     }
 
     public void setTypeName(String typeName) {
-        this.typeName = typeName;
     }
 }
