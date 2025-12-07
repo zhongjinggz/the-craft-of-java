@@ -9,7 +9,7 @@ import java.util.Map;
 
 @Repository
 public class PlayRepositoryMem implements PlayRepository {
-    Map<String, Play> plays = new HashMap<>();
+    private final Map<String, Play> plays = new HashMap<>();
 
     public PlayRepositoryMem() {
         initPlays();

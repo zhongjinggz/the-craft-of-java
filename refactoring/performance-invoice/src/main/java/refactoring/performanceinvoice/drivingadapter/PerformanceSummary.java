@@ -5,7 +5,7 @@ import java.util.List;
 
 public class PerformanceSummary {
     private String customer;
-    List<Performance> performances = new ArrayList<>();
+    private final List<Performance> performances = new ArrayList<>();
 
     public PerformanceSummary() {}
 

@@ -3,10 +3,10 @@ package refactoring.performanceinvoice.domain;
 import refactoring.performanceinvoice.drivingadapter.Performance;
 
 public class Play {
-    private String id;
-    private String name;
+    private final String id;
+    private final String name;
 
-    public PlayType playType;
+    private final PlayType playType;
 
     public Play(String id, String name, String typeName) {
         this.id = id;
@@ -21,11 +21,6 @@ public class Play {
     public String getName() {
         return name;
     }
-
-//    public String getTypeName() {
-//        return playType.getName();
-//    }
-
 
     public int calPoints(Performance perf) {
         return playType.calPoints(perf.getAudience());

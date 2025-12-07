@@ -12,8 +12,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PerformanceInvoiceService {
-    PerformanceInvoiceRepository invoiceRepository;
-    PlayRepository playRepository;
+    private final PerformanceInvoiceRepository invoiceRepository;
+    private final PlayRepository playRepository;
 
     public PerformanceInvoiceService(PerformanceInvoiceRepository invoiceRepository, PlayRepository playRepository) {
         this.invoiceRepository = invoiceRepository;

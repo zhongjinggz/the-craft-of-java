@@ -12,7 +12,7 @@ public class PerformanceInvoice {
 
     private int audiencePoints;
 
-    private List<PerformanceInvoiceItem> items = new ArrayList<>();
+    private final List<PerformanceInvoiceItem> items = new ArrayList<>();
 
     public PerformanceInvoice(String customer) {
         this.customer = customer;
@@ -49,11 +49,10 @@ public class PerformanceInvoice {
         return audiencePoints;
     }
 
-    public int addItem(Play play, int itemAmount, int itemPoints, int audienceCount) {
+    public void addItem(Play play, int itemAmount, int itemPoints, int audienceCount) {
         items.add(new PerformanceInvoiceItem(play.getName()
             , itemAmount, audienceCount));
         amount += itemAmount;
         audiencePoints += itemPoints;
-        return audiencePoints;
     }
 }
