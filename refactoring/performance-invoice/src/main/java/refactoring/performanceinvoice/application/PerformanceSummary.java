@@ -4,25 +4,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PerformanceSummary {
-    private String customer;
+    private final String customerName;
     private final List<Performance> performances = new ArrayList<>();
 
-    public PerformanceSummary() {}
-
-    public PerformanceSummary(String customer) {
-        this.customer = customer;
+    public PerformanceSummary(String customerName) {
+        this.customerName = customerName;
     }
 
     public String getCustomerName() {
-        return customer;
+        return customerName;
     }
 
     public List<Performance> getPerformances() {
         return performances;
     }
 
-    public void addPerformance(String playId, int audience) {
-        Performance p = new Performance(playId, audience);
-        performances.add(p);
+    public void addPerformance(String playId, int audienceCount) {
+        performances.add(new Performance(playId, audienceCount));
     }
 }

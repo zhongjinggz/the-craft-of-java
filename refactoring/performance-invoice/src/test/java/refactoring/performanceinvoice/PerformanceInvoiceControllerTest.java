@@ -42,7 +42,7 @@ class PerformanceInvoiceControllerTest {
 
         // then
         assertNotNull(invoice);
-        assertEquals("张三", invoice.getCustomer());
+        assertEquals("张三", invoice.getCustomerName());
         assertEquals(1, invoice.getItems().size());
 
         // 验证总金额：40000 + 1000*(35-30) = 45000
@@ -63,7 +63,7 @@ class PerformanceInvoiceControllerTest {
         PerformanceInvoice invoice = controller.createInvoice(summary);
 
         assertNotNull(invoice);
-        assertEquals("李四", invoice.getCustomer());
+        assertEquals("李四", invoice.getCustomerName());
         assertEquals(1, invoice.getItems().size());
 
         // 计算预期金额：30000 + 10000 + 500*(25-20) + 300*25 = 30000+10000+2500+7500=50000
@@ -84,7 +84,7 @@ class PerformanceInvoiceControllerTest {
         PerformanceInvoice invoice = controller.createInvoice(summary);
 
         assertNotNull(invoice);
-        assertEquals("王五", invoice.getCustomer());
+        assertEquals("王五", invoice.getCustomerName());
         assertEquals(2, invoice.getItems().size());
 
         // 悲剧：40000；喜剧：30000 + 300*20 = 36000 → 总计76000
@@ -108,7 +108,7 @@ class PerformanceInvoiceControllerTest {
         PerformanceInvoice invoice = controller.createInvoice(summary);
 
         assertNotNull(invoice);
-        assertEquals("孙七", invoice.getCustomer());
+        assertEquals("孙七", invoice.getCustomerName());
         assertTrue(invoice.getItems().isEmpty());
         assertEquals(0, invoice.getAmount());
         assertEquals(0, invoice.getAudiencePoints());

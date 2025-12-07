@@ -8,12 +8,12 @@ public class PerformanceInvoiceItem {
 
     private final int amount;
 
-    private final int audience;
+    private final int audienceCount;
 
-    public PerformanceInvoiceItem(String name, int amount, int audience) {
+    public PerformanceInvoiceItem(String name, int amount, int audienceCount) {
         this.name = name;
         this.amount = amount;
-        this.audience = audience;
+        this.audienceCount = audienceCount;
     }
 
     public String getName() {
@@ -24,7 +24,7 @@ public class PerformanceInvoiceItem {
         return amount;
     }
 
-    public int getAudience() {
-        return audience;
+    public int getAudienceCount() {
+        return audienceCount;
     }
 }

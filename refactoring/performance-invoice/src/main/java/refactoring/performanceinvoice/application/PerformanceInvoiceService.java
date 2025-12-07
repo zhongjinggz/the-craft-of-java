@@ -1,13 +1,12 @@
 package refactoring.performanceinvoice.application;
 
+import org.springframework.stereotype.Service;
 import refactoring.performanceinvoice.domain.performanceinvoice.PerformanceInvoice;
 import refactoring.performanceinvoice.domain.performanceinvoice.PerformanceInvoiceRepository;
 import refactoring.performanceinvoice.domain.play.Play;
 import refactoring.performanceinvoice.domain.play.PlayRepository;
 
-import java.util.HashMap;
-import java.util.Map;
-
+@Service
 public class PerformanceInvoiceService {
     private final PerformanceInvoiceRepository invoiceRepository;
     private final PlayRepository playRepository;
@@ -17,22 +16,18 @@ public class PerformanceInvoiceService {
         this.playRepository = playRepository;
     }
 
-    Map<String, Play> plays = new HashMap<>();
     public PerformanceInvoice createInvoice(PerformanceSummary performanceSummary) {
         PerformanceInvoice invoice = new PerformanceInvoice(
                 performanceSummary.getCustomerName());
 
-
         for (Performance perf : performanceSummary.getPerformances()) {
-            Play play = playRepository.findPlayById(perf.getPlayId());
+            Play play = playRepository.findPlayById(perf.playId());
 
             invoice.addItem(play
-                , play.calAmount(perf)
-                , play.calPoints(perf)
-                , perf.getAudienceCount());
-
+                , play.calAmount(perf.audienceCount())
+                , play.calPoints(perf.audienceCount())
+                , perf.audienceCount());
         }
-
 
         invoiceRepository.save(invoice);
         return invoice;

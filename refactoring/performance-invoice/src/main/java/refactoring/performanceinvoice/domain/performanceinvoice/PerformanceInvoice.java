@@ -9,39 +9,24 @@ import java.util.List;
 public class PerformanceInvoice {
     private Long id;
 
-    private String customer;
+    private String customerName;
 
-    private int amount;
+    private int amount = 0;
 
-    private int audiencePoints;
+    private int audiencePoints = 0;
 
     private final List<PerformanceInvoiceItem> items = new ArrayList<>();
 
-    public PerformanceInvoice(String customer) {
-        this.customer = customer;
-    }
-    public void setCustomer(String customer) {
-        this.customer = customer;
+    public PerformanceInvoice(String customerName) {
+        this.customerName = customerName;
     }
 
-    public void addItem(PerformanceInvoiceItem item) {
-        this.items.add(item);
-    }
-
-    public String getCustomer() {
-        return customer;
+    public String getCustomerName() {
+        return customerName;
     }
 
     public List<PerformanceInvoiceItem> getItems() {
         return Collections.unmodifiableList(items);
-    }
-
-    public void setAmount(int amount) {
-        this.amount = amount;
-    }
-
-    public void setVolumePoints(int volumeCredits) {
-        this.audiencePoints = volumeCredits;
     }
 
     public int getAmount() {

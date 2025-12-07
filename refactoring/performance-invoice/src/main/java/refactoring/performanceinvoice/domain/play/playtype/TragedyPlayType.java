@@ -1,12 +1,13 @@
 package refactoring.performanceinvoice.domain.play.playtype;
 
 public class TragedyPlayType extends PlayType {
+    public static final String NAME = "tragedy";
 
     private static final int POINTS_THRESHOLD = 30;
+
     private static final int AMOUNT_THRESHOLD = 30;
     private static final int BASE_PRICE = 40000;
     private static final int UNIT_PRICE = 1000;
-    public static final String NAME = "tragedy";
 
     @Override
     public int calPoints(int audienceCount) {

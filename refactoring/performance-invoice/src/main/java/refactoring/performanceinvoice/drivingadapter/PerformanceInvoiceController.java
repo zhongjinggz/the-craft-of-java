@@ -22,7 +22,8 @@ import refactoring.performanceinvoice.domain.performanceinvoice.PerformanceInvoi
 //DONE 坏味道：神秘命名；重构手法：重命名
 //DONE 坏味道：不当注释
 //DONE 坏味道：废弃代码
-//DOING 坏味道：可变性
+//DONE 坏味道：可变性
+//DONE 其他清理
 
 @RestController
 public class PerformanceInvoiceController {

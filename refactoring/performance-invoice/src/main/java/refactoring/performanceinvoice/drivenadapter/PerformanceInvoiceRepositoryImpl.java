@@ -7,7 +7,7 @@ import refactoring.performanceinvoice.domain.performanceinvoice.PerformanceInvoi
 @Repository
 public class PerformanceInvoiceRepositoryImpl implements PerformanceInvoiceRepository {
     @Override
-    public void save(PerformanceInvoice bill){
+    public void save(PerformanceInvoice invoice){
         throw new UnsupportedOperationException("该方法尚未实现");
     }
 
