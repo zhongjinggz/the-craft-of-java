@@ -36,7 +36,7 @@ public class PerformanceInvoiceService {
             int thisPoints = play.calPoints(perf);
 
 
-            invoice.addItem(thisPoints, thisAmount, play, perf.getAudience());
+            invoice.addItem(play, thisAmount, thisPoints, perf.getAudience());
 
         }
 
