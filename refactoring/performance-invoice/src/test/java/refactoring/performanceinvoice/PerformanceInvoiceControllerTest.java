@@ -6,6 +6,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import refactoring.performanceinvoice.application.PerformanceInvoiceService;
 import refactoring.performanceinvoice.domain.PerformanceInvoice;
 import refactoring.performanceinvoice.drivenadapter.PerformanceInvoiceRepository;
 import refactoring.performanceinvoice.drivingadapter.PerformanceInvoiceController;
@@ -17,7 +18,6 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class PerformanceInvoiceControllerTest {
 
-    @InjectMocks
     private PerformanceInvoiceController controller; // 被测试的控制器实例
 
     @Mock
@@ -25,7 +25,8 @@ class PerformanceInvoiceControllerTest {
 
     @BeforeEach
     void setUp() {
-
+        PerformanceInvoiceService service = new PerformanceInvoiceService(repository);
+        controller = new PerformanceInvoiceController(service);
     }
 
     @Test

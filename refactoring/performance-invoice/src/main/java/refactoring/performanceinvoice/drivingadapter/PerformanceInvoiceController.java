@@ -1,14 +1,8 @@
 package refactoring.performanceinvoice.drivingadapter;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import refactoring.performanceinvoice.application.PerformanceInvoiceService;
-import refactoring.performanceinvoice.drivenadapter.PerformanceInvoiceRepository;
 import refactoring.performanceinvoice.domain.PerformanceInvoice;
-import refactoring.performanceinvoice.domain.Play;
-
-import java.util.HashMap;
-import java.util.Map;
 
 //DONE 坏味道：缺乏包内聚；重构手法：重构到分层架构/搬移类
 //DONE 坏味道：过长的函数；重构手法：提炼函数
@@ -30,71 +24,15 @@ import java.util.Map;
 @RestController
 public class PerformanceInvoiceController {
 
-    Map<String, Play> plays = new HashMap<>();
-
-    @Autowired
-    PerformanceInvoiceRepository repository;
-
-    @Autowired
     PerformanceInvoiceService invoiceService;
+
+    public PerformanceInvoiceController(PerformanceInvoiceService invoiceService) {
+        this.invoiceService = invoiceService;
+    }
 
     @PostMapping("/api/performance-invoice")
     public PerformanceInvoice createInvoice(@RequestBody PerformanceSummary performanceSummary) {
-        return createInvoice2(performanceSummary);
-    }
-
-    private PerformanceInvoice createInvoice2(PerformanceSummary performanceSummary) {
-        //初始化戏剧列表
-        plays.put("dasheng", new Play("dasheng", "大圣娶亲", "tragedy"));
-        plays.put("007", new Play("007", "国产凌凌漆", "comedy"));
-        plays.put("qiuxiang", new Play("qiuxiang", "唐伯虎点秋香", "comedy"));
-
-        int totalAmount = 0;
-        int volumeCredits = 0;
-
-        PerformanceInvoice bill = new PerformanceInvoice(
-                performanceSummary.getCustomer());
-
-
-        for (Performance perf : performanceSummary.getPerformances()) {
-            Play play = plays.get(perf.getPlayId());
-            int thisAmt;
-
-            if (play.getType().equals("tragedy")) {
-                thisAmt = 40000;
-                if (perf.getAudience() > 30) {
-                    thisAmt += 1000 * (perf.getAudience() - 30);
-                }
-            } else if (play.getType().equals("comedy")) {
-                thisAmt = 30000;
-                if (perf.getAudience() > 20) {
-                    thisAmt += 10000 + 500 * (perf.getAudience() - 20);
-                }
-                thisAmt += 300 * perf.getAudience();
-            } else {
-                throw new IllegalArgumentException("戏剧类型不正确!");
-            }
-
-            //计算观众量积分
-            volumeCredits += Math.max(perf.getAudience() - 30, 0);
-            if ("comedy".equals(play.getType())) {
-                volumeCredits += Math.floorDiv(perf.getAudience(), 5);
-            }
-
-            totalAmount += thisAmt;
-
-            // 添加账单项
-            bill.addItem(play.getName(),thisAmt, perf.getAudience());
-
-
-        }
-
-        //设置账单金额和积分
-        bill.setTotalAmount(totalAmount);
-        bill.setVolumePoints(volumeCredits);
-
-        repository.save(bill);
-        return bill;
+        return invoiceService.createInvoice2(performanceSummary);
     }
 
 }
