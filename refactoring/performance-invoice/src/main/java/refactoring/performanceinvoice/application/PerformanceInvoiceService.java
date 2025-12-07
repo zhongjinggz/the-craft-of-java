@@ -27,56 +27,56 @@ public class PerformanceInvoiceService {
         int totalAmount = 0;
         int totalPoints = 0;
 
-        PerformanceInvoice bill = new PerformanceInvoice(
+        PerformanceInvoice invoice = new PerformanceInvoice(
                 performanceSummary.getCustomer());
 
 
         for (Performance perf : performanceSummary.getPerformances()) {
             Play play = plays.get(perf.getPlayId());
 
-            int thisAmount = calAmount(perf, play);
+            int thisAmount = calAmount(play, perf.getAudience());
             totalAmount += thisAmount;
 
-            int thisPoints = calPoints(perf, play);
+            int thisPoints = calPoints(play, perf.getAudience());
             totalPoints += thisPoints;
 
 
             // 添加账单项
-            bill.addItem(play.getName(),thisAmount, perf.getAudience());
+            invoice.addItem(play.getName(),thisAmount, perf.getAudience());
 
 
         }
 
         //设置账单金额和积分
-        bill.setTotalAmount(totalAmount);
-        bill.setVolumePoints(totalPoints);
+        invoice.setTotalAmount(totalAmount);
+        invoice.setVolumePoints(totalPoints);
 
-        repository.save(bill);
-        return bill;
+        repository.save(invoice);
+        return invoice;
     }
 
-    private int calPoints(Performance perf, Play play) {
-        int thisPoints = Math.max(perf.getAudience() - 30, 0);
+    private int calPoints(Play play, int audienceCount) {
+        int thisPoints = Math.max(audienceCount - 30, 0);
         if ("comedy".equals(play.getType())) {
-            thisPoints += Math.floorDiv(perf.getAudience(), 5);
+            thisPoints += Math.floorDiv(audienceCount, 5);
         }
         return thisPoints;
     }
 
-    private int calAmount(Performance perf, Play play) {
+    private int calAmount(Play play, int audience) {
         int thisAmt;
 
         if (play.getType().equals("tragedy")) {
             thisAmt = 40000;
-            if (perf.getAudience() > 30) {
-                thisAmt += 1000 * (perf.getAudience() - 30);
+            if (audience > 30) {
+                thisAmt += 1000 * (audience - 30);
             }
         } else if (play.getType().equals("comedy")) {
             thisAmt = 30000;
-            if (perf.getAudience() > 20) {
-                thisAmt += 10000 + 500 * (perf.getAudience() - 20);
+            if (audience > 20) {
+                thisAmt += 10000 + 500 * (audience - 20);
             }
-            thisAmt += 300 * perf.getAudience();
+            thisAmt += 300 * audience;
         } else {
             throw new IllegalArgumentException("戏剧类型不正确!");
         }
