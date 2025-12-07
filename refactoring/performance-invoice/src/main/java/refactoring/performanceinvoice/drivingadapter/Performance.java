@@ -2,19 +2,19 @@ package refactoring.performanceinvoice.drivingadapter;
 
 public class Performance {
 
-    private String playId;
-    private int audience;
+    private final String playId;
+    private final int audienceCount;
 
-    public Performance(String playId, int audience) {
+    public Performance(String playId, int audienceCount) {
         this.playId = playId;
-        this.audience = audience;
+        this.audienceCount = audienceCount;
     }
 
     public String getPlayId() {
         return playId;
     }
 
-    public int getAudience() {
-        return audience;
+    public int getAudienceCount() {
+        return audienceCount;
     }
 }

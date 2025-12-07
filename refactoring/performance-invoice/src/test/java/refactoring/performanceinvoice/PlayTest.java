@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 import refactoring.performanceinvoice.domain.Play;
 import refactoring.performanceinvoice.domain.PlayTypes;
-import refactoring.performanceinvoice.domain.TragedyPlayType;
 
 class PlayTest {
 

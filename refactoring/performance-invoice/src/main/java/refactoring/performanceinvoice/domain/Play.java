@@ -23,11 +23,11 @@ public class Play {
     }
 
     public int calPoints(Performance perf) {
-        return playType.calPoints(perf.getAudience());
+        return playType.calPoints(perf.getAudienceCount());
     }
 
     public int calAmount(Performance perf) {
-        return playType.calAmount(perf.getAudience());
+        return playType.calAmount(perf.getAudienceCount());
     }
 
     public PlayType getType() {

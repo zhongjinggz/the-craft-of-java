@@ -4,7 +4,6 @@ import refactoring.performanceinvoice.domain.PerformanceInvoice;
 import refactoring.performanceinvoice.domain.PerformanceInvoiceRepository;
 import refactoring.performanceinvoice.domain.Play;
 import refactoring.performanceinvoice.domain.PlayRepository;
-import refactoring.performanceinvoice.drivenadapter.PerformanceInvoiceRepositoryImpl;
 import refactoring.performanceinvoice.drivingadapter.Performance;
 import refactoring.performanceinvoice.drivingadapter.PerformanceSummary;
 
@@ -32,7 +31,7 @@ public class PerformanceInvoiceService {
             invoice.addItem(play
                 , play.calAmount(perf)
                 , play.calPoints(perf)
-                , perf.getAudience());
+                , perf.getAudienceCount());
 
         }
 

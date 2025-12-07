@@ -8,7 +8,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import refactoring.performanceinvoice.application.PerformanceInvoiceService;
 import refactoring.performanceinvoice.domain.PerformanceInvoice;
 import refactoring.performanceinvoice.domain.PerformanceInvoiceRepository;
-import refactoring.performanceinvoice.drivenadapter.PerformanceInvoiceRepositoryImpl;
 import refactoring.performanceinvoice.drivenadapter.PlayRepositoryMem;
 import refactoring.performanceinvoice.drivingadapter.PerformanceInvoiceController;
 import refactoring.performanceinvoice.drivingadapter.PerformanceSummary;
