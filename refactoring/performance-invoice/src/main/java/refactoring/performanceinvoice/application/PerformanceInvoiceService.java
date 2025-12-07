@@ -1,8 +1,10 @@
 package refactoring.performanceinvoice.application;
 
+import org.springframework.boot.jdbc.init.PlatformPlaceholderDatabaseDriverResolver;
 import refactoring.performanceinvoice.domain.PerformanceInvoice;
 import refactoring.performanceinvoice.domain.Play;
 import refactoring.performanceinvoice.drivenadapter.PerformanceInvoiceRepository;
+import refactoring.performanceinvoice.drivenadapter.PlayRepository;
 import refactoring.performanceinvoice.drivingadapter.Performance;
 import refactoring.performanceinvoice.drivingadapter.PerformanceSummary;
 
@@ -11,6 +13,7 @@ import java.util.Map;
 
 public class PerformanceInvoiceService {
     PerformanceInvoiceRepository repository;
+    PlayRepository playRepository;
 
     public PerformanceInvoiceService(PerformanceInvoiceRepository repository) {
         this.repository = repository;
