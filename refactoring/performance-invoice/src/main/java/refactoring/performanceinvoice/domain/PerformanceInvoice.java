@@ -1,6 +1,7 @@
 package refactoring.performanceinvoice.domain;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class PerformanceInvoice {
@@ -30,7 +31,7 @@ public class PerformanceInvoice {
     }
 
     public List<PerformanceInvoiceItem> getItems() {
-        return items;
+        return Collections.unmodifiableList(items);
     }
 
     public void setAmount(int amount) {
