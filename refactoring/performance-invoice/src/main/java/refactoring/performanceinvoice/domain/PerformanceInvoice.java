@@ -52,4 +52,10 @@ public class PerformanceInvoice {
     public int getVolumeCredits() {
         return volumeCredits;
     }
+
+    public int addItem2(int totalAmount, int thisAmount, Play play, int audienceCount) {
+        totalAmount += thisAmount;
+        addItem(play.getName(), thisAmount, audienceCount);
+        return totalAmount;
+    }
 }

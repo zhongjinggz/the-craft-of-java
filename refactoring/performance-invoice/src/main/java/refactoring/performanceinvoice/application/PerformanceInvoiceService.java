@@ -35,14 +35,12 @@ public class PerformanceInvoiceService {
             Play play = plays.get(perf.getPlayId());
 
             int thisAmount = play.calAmount(perf);
-            totalAmount += thisAmount;
 
             int thisPoints = play.calPoints(perf);
             totalPoints += thisPoints;
 
 
-            // 添加账单项
-            invoice.addItem(play.getName(),thisAmount, perf.getAudience());
+            totalAmount = invoice.addItem2(totalAmount, thisAmount, play, perf.getAudience());
 
         }
 
