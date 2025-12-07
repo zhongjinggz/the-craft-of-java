@@ -10,9 +10,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 //DONE 坏味道：缺乏包内聚；重构手法：重构到分层架构/搬移类
-//DOING 坏味道：过长的函数；重构手法：提炼函数
+//DONE 坏味道：过长的函数；重构手法：提炼函数
+//DOING 坏味道：临时变量；重构手法：内联变量
 //TODO 坏味道：过长的类；重构手法：提炼类/搬移函数
-//TODO 坏味道：临时变量；重构手法：内联变量
 //TODO 坏味道：过大的类；重构手法：提炼类（service 类）
 //TODO 坏味道：复杂代码；重构手法：提炼函数
 //TODO 坏味道：特性依恋；重构手法：搬移函数
@@ -37,9 +37,7 @@ public class PerformanceInvoiceController {
 
     @PostMapping("/api/performance-invoice")
     public PerformanceInvoice createInvoice(@RequestBody PerformanceSummary performanceSummary) {
-        PerformanceInvoice invoice = createInvoice2(performanceSummary);
-
-        return invoice;
+        return createInvoice2(performanceSummary);
     }
 
     private PerformanceInvoice createInvoice2(PerformanceSummary performanceSummary) {
