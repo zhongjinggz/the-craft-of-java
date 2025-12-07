@@ -9,6 +9,7 @@ public class ComedyPlayType extends PlayType {
     private static final int UNIT_PRICE = 300;
     private static final int EXTRA_BASE_PRICE = 10000;
     private static final int EXTRA_UNIT_PRICE = 500;
+    public static final String NAME = "comedy";
 
     public ComedyPlayType(String name) {
         super(name);

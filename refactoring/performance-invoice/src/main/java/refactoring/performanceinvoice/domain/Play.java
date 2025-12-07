@@ -16,8 +16,8 @@ public class Play {
 
     private static PlayType buildPlayType(String typeName) {
         return switch (typeName) {
-            case "tragedy" -> new TragedyPlayType(typeName);
-            case "comedy" -> new ComedyPlayType(typeName);
+            case TragedyPlayType.NAME -> new TragedyPlayType(typeName);
+            case ComedyPlayType.NAME -> new ComedyPlayType(typeName);
             default -> throw new IllegalArgumentException("戏剧类型不正确!");
         };
     }
