@@ -2,6 +2,7 @@ package refactoring.performanceinvoice.drivingadapter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import refactoring.performanceinvoice.application.PerformanceInvoiceService;
 import refactoring.performanceinvoice.drivenadapter.PerformanceInvoiceRepository;
 import refactoring.performanceinvoice.domain.PerformanceInvoice;
 import refactoring.performanceinvoice.domain.Play;
@@ -13,7 +14,6 @@ import java.util.Map;
 //DONE 坏味道：过长的函数；重构手法：提炼函数
 //DOING 坏味道：临时变量；重构手法：内联变量
 //TODO 坏味道：过长的类；重构手法：提炼类/搬移函数
-//TODO 坏味道：过大的类；重构手法：提炼类（service 类）
 //TODO 坏味道：复杂代码；重构手法：提炼函数
 //TODO 坏味道：特性依恋；重构手法：搬移函数
 //TODO 坏味道：基本类型偏执；重构手法：提炼类
@@ -34,6 +34,9 @@ public class PerformanceInvoiceController {
 
     @Autowired
     PerformanceInvoiceRepository repository;
+
+    @Autowired
+    PerformanceInvoiceService invoiceService;
 
     @PostMapping("/api/performance-invoice")
     public PerformanceInvoice createInvoice(@RequestBody PerformanceSummary performanceSummary) {
