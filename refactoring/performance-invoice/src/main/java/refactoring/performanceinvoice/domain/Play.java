@@ -1,5 +1,7 @@
 package refactoring.performanceinvoice.domain;
 
+import refactoring.performanceinvoice.drivingadapter.Performance;
+
 public class Play {
     private String id;
     private String name;
@@ -26,5 +28,13 @@ public class Play {
     }
 
     public void setTypeName(String typeName) {
+    }
+
+    public int calPoints(Performance perf) {
+        return playType.calPoints(perf.getAudience());
+    }
+
+    public int calAmount(Performance perf) {
+        return playType.calAmount(perf.getAudience());
     }
 }
