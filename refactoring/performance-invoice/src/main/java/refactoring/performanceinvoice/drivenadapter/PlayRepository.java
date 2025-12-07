@@ -8,6 +8,10 @@ import java.util.Map;
 public class PlayRepository {
     Map<String, Play> plays = new HashMap<>();
 
+    public PlayRepository() {
+        initPlays();
+    }
+
     public void initPlays() {
         //初始化戏剧列表
         plays.put("dasheng", new Play("dasheng", "大圣娶亲", "tragedy"));

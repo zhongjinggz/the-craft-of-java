@@ -22,7 +22,7 @@ public class PerformanceInvoiceService {
 
     Map<String, Play> plays = new HashMap<>();
     public PerformanceInvoice createInvoice(PerformanceSummary performanceSummary) {
-        playRepository.initPlays();
+//        playRepository.initPlays();
 
         PerformanceInvoice invoice = new PerformanceInvoice(
                 performanceSummary.getCustomerName());
