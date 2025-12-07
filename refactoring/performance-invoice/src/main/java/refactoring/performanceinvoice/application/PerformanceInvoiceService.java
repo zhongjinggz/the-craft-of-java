@@ -24,7 +24,6 @@ public class PerformanceInvoiceService {
         plays.put("007", new Play("007", "国产凌凌漆", "comedy"));
         plays.put("qiuxiang", new Play("qiuxiang", "唐伯虎点秋香", "comedy"));
 
-        int totalAmount = 0;
         int totalPoints = 0;
 
         PerformanceInvoice invoice = new PerformanceInvoice(
@@ -40,12 +39,10 @@ public class PerformanceInvoiceService {
             totalPoints += thisPoints;
 
 
-            totalAmount = invoice.addItem2(thisAmount, play, perf.getAudience());
+            invoice.addItem(thisAmount, play, perf.getAudience());
 
         }
 
-        //设置账单金额和积分
-        invoice.setAmount(totalAmount);
         invoice.setVolumePoints(totalPoints);
 
         repository.save(invoice);
