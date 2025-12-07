@@ -23,7 +23,7 @@ public class Play {
     }
 
     public String getTypeName() {
-        return typeName;
+        return playType.getName();
     }
 
     public int calPoints(int audienceCount) {

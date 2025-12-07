@@ -20,7 +20,7 @@ void should_create_play() {
         // Then
         assertEquals(id, play.getId());
         assertEquals(name, play.getName());
-        assertEquals(type, play.getType());
+        assertEquals(type, play.getTypeName());
     }
 
 }

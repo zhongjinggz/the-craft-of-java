@@ -6,4 +6,8 @@ public class PlayType {
     public PlayType(String name) {
         this.name = name;
     }
+
+    public String getName() {
+        return name;
+    }
 }
