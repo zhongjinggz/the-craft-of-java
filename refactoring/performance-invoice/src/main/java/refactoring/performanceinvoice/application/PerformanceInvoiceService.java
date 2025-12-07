@@ -31,12 +31,10 @@ public class PerformanceInvoiceService {
         for (Performance perf : performanceSummary.getPerformances()) {
             Play play = plays.get(perf.getPlayId());
 
-            int thisAmount = play.calAmount(perf);
-
-            int thisPoints = play.calPoints(perf);
-
-
-            invoice.addItem(play, thisAmount, thisPoints, perf.getAudience());
+            invoice.addItem(play
+                , play.calAmount(perf)
+                , play.calPoints(perf)
+                , perf.getAudience());
 
         }
 
