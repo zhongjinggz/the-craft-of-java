@@ -24,10 +24,8 @@ public class PerformanceInvoiceService {
         plays.put("007", new Play("007", "国产凌凌漆", "comedy"));
         plays.put("qiuxiang", new Play("qiuxiang", "唐伯虎点秋香", "comedy"));
 
-        int totalPoints = 0;
-
         PerformanceInvoice invoice = new PerformanceInvoice(
-                performanceSummary.getCustomer());
+                performanceSummary.getCustomerName());
 
 
         for (Performance perf : performanceSummary.getPerformances()) {
@@ -36,14 +34,12 @@ public class PerformanceInvoiceService {
             int thisAmount = play.calAmount(perf);
 
             int thisPoints = play.calPoints(perf);
-            totalPoints += thisPoints;
 
 
-            invoice.addItem(thisAmount, play, perf.getAudience());
+            invoice.addItem(thisPoints, thisAmount, play, perf.getAudience());
 
         }
 
-        invoice.setVolumePoints(totalPoints);
 
         repository.save(invoice);
         return invoice;

@@ -49,9 +49,11 @@ public class PerformanceInvoice {
         return audiencePoints;
     }
 
-    public void addItem(int itemAmount, Play play, int audienceCount) {
-        this.items.add(new PerformanceInvoiceItem(play.getName()
+    public int addItem(int itemPoints, int itemAmount, Play play, int audienceCount) {
+        items.add(new PerformanceInvoiceItem(play.getName()
             , itemAmount, audienceCount));
         amount += itemAmount;
+        audiencePoints += itemPoints;
+        return audiencePoints;
     }
 }

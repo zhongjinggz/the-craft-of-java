@@ -13,7 +13,7 @@ public class PerformanceSummary {
         this.customer = customer;
     }
 
-    public String getCustomer() {
+    public String getCustomerName() {
         return customer;
     }
 
