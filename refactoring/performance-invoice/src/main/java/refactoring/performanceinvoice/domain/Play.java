@@ -6,12 +6,20 @@ public class Play {
     private String id;
     private String name;
 
-    public ComedyPlayType playType;
+    public PlayType playType;
 
     public Play(String id, String name, String typeName) {
         this.id = id;
         this.name = name;
-        this.playType = new ComedyPlayType(typeName);
+        this.playType = buildPlayType(typeName);
+    }
+
+    private static PlayType buildPlayType(String typeName) {
+        return switch (typeName) {
+            case "tragedy" -> new TragedyPlayType(typeName);
+            case "comedy" -> new ComedyPlayType(typeName);
+            default -> throw new IllegalArgumentException("戏剧类型不正确!");
+        };
     }
 
     public String getId() {
