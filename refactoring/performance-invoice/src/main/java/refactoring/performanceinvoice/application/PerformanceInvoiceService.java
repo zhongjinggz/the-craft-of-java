@@ -1,9 +1,10 @@
 package refactoring.performanceinvoice.application;
 
 import refactoring.performanceinvoice.domain.PerformanceInvoice;
+import refactoring.performanceinvoice.domain.PerformanceInvoiceRepository;
 import refactoring.performanceinvoice.domain.Play;
-import refactoring.performanceinvoice.drivenadapter.PerformanceInvoiceRepository;
-import refactoring.performanceinvoice.drivenadapter.PlayRepository;
+import refactoring.performanceinvoice.domain.PlayRepository;
+import refactoring.performanceinvoice.drivenadapter.PerformanceInvoiceRepositoryImpl;
 import refactoring.performanceinvoice.drivingadapter.Performance;
 import refactoring.performanceinvoice.drivingadapter.PerformanceSummary;
 
@@ -11,19 +12,16 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PerformanceInvoiceService {
-    PerformanceInvoiceRepository repository;
+    PerformanceInvoiceRepository invoiceRepository;
     PlayRepository playRepository;
 
-    public PerformanceInvoiceService(PerformanceInvoiceRepository repository) {
-        this.repository = repository;
-        playRepository = new PlayRepository();
+    public PerformanceInvoiceService(PerformanceInvoiceRepository invoiceRepository, PlayRepository playRepository) {
+        this.invoiceRepository = invoiceRepository;
+        this.playRepository = playRepository;
     }
-
 
     Map<String, Play> plays = new HashMap<>();
     public PerformanceInvoice createInvoice(PerformanceSummary performanceSummary) {
-//        playRepository.initPlays();
-
         PerformanceInvoice invoice = new PerformanceInvoice(
                 performanceSummary.getCustomerName());
 
@@ -39,7 +37,7 @@ public class PerformanceInvoiceService {
         }
 
 
-        repository.save(invoice);
+        invoiceRepository.save(invoice);
         return invoice;
     }
 

@@ -7,7 +7,9 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import refactoring.performanceinvoice.application.PerformanceInvoiceService;
 import refactoring.performanceinvoice.domain.PerformanceInvoice;
-import refactoring.performanceinvoice.drivenadapter.PerformanceInvoiceRepository;
+import refactoring.performanceinvoice.domain.PerformanceInvoiceRepository;
+import refactoring.performanceinvoice.drivenadapter.PerformanceInvoiceRepositoryImpl;
+import refactoring.performanceinvoice.drivenadapter.PlayRepositoryMem;
 import refactoring.performanceinvoice.drivingadapter.PerformanceInvoiceController;
 import refactoring.performanceinvoice.drivingadapter.PerformanceSummary;
 
@@ -20,11 +22,13 @@ class PerformanceInvoiceControllerTest {
     private PerformanceInvoiceController controller; // 被测试的控制器实例
 
     @Mock
-    private PerformanceInvoiceRepository repository; // 模拟持久化层接口
+    private PerformanceInvoiceRepository invoiceRepository; // 模拟持久化层接口
 
     @BeforeEach
     void setUp() {
-        PerformanceInvoiceService service = new PerformanceInvoiceService(repository);
+        PerformanceInvoiceService service = new PerformanceInvoiceService(
+            invoiceRepository,
+            new PlayRepositoryMem());
         controller = new PerformanceInvoiceController(service);
     }
 
@@ -49,7 +53,7 @@ class PerformanceInvoiceControllerTest {
         assertEquals(5, invoice.getAudiencePoints());
 
         // 验证数据库操作
-        verify(repository, times(1)).save(any(PerformanceInvoice.class));
+        verify(invoiceRepository, times(1)).save(any(PerformanceInvoice.class));
     }
 
     @Test
@@ -69,7 +73,7 @@ class PerformanceInvoiceControllerTest {
         // 积分：max(25-30,0)=0 + floorDiv(25,5)=5 => 共5分
         assertEquals(5, invoice.getAudiencePoints());
 
-        verify(repository, times(1)).save(any(PerformanceInvoice.class));
+        verify(invoiceRepository, times(1)).save(any(PerformanceInvoice.class));
     }
 
     @Test
@@ -90,7 +94,7 @@ class PerformanceInvoiceControllerTest {
         // 积分：悲剧 max(0), 喜剧 floorDiv(20/5)=4 → 总共4分
         assertEquals(4, invoice.getAudiencePoints());
 
-        verify(repository, times(1)).save(any(PerformanceInvoice.class));
+        verify(invoiceRepository, times(1)).save(any(PerformanceInvoice.class));
     }
 
 
@@ -100,7 +104,7 @@ class PerformanceInvoiceControllerTest {
     void should_create_empty_bill_for_no_performances() {
         PerformanceSummary summary = new PerformanceSummary("孙七");
 
-        doNothing().when(repository).save(any(PerformanceInvoice.class));
+        doNothing().when(invoiceRepository).save(any(PerformanceInvoice.class));
 
         PerformanceInvoice invoice = controller.createInvoice(summary);
 
@@ -110,6 +114,6 @@ class PerformanceInvoiceControllerTest {
         assertEquals(0, invoice.getAmount());
         assertEquals(0, invoice.getAudiencePoints());
 
-        verify(repository, times(1)).save(any(PerformanceInvoice.class));
+        verify(invoiceRepository, times(1)).save(any(PerformanceInvoice.class));
     }
 }

@@ -1,14 +1,17 @@
 package refactoring.performanceinvoice.drivenadapter;
 
+import org.springframework.stereotype.Repository;
 import refactoring.performanceinvoice.domain.Play;
+import refactoring.performanceinvoice.domain.PlayRepository;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class PlayRepository {
+@Repository
+public class PlayRepositoryMem implements PlayRepository {
     Map<String, Play> plays = new HashMap<>();
 
-    public PlayRepository() {
+    public PlayRepositoryMem() {
         initPlays();
     }
 
@@ -19,6 +22,7 @@ public class PlayRepository {
         plays.put("qiuxiang", new Play("qiuxiang", "唐伯虎点秋香", "comedy"));
     }
 
+    @Override
     public Play findPlayById(String playId) {
         return plays.get(playId);
     }
