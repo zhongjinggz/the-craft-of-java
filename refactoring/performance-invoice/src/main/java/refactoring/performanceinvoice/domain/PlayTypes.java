@@ -1,9 +1,9 @@
 package refactoring.performanceinvoice.domain;
 
-public class PlayTypeFactory {
+public class PlayTypes {
     private static final PlayType TRAGEDY = new TragedyPlayType();
     private static final PlayType COMEDY = new ComedyPlayType();
-    static PlayType buildPlayType(String typeName) {
+    public static PlayType get(String typeName) {
         return switch (typeName) {
             case TragedyPlayType.NAME -> TRAGEDY;
             case ComedyPlayType.NAME -> COMEDY;

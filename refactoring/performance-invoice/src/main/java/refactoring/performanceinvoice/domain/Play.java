@@ -11,7 +11,7 @@ public class Play {
     public Play(String id, String name, String typeName) {
         this.id = id;
         this.name = name;
-        this.playType = PlayTypeFactory.buildPlayType(typeName);
+        this.playType = PlayTypes.get(typeName);
     }
 
     public String getId() {
