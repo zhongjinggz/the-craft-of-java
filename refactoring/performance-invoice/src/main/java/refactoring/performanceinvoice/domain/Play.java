@@ -11,15 +11,7 @@ public class Play {
     public Play(String id, String name, String typeName) {
         this.id = id;
         this.name = name;
-        this.playType = buildPlayType(typeName);
-    }
-
-    private static PlayType buildPlayType(String typeName) {
-        return switch (typeName) {
-            case TragedyPlayType.NAME -> new TragedyPlayType();
-            case ComedyPlayType.NAME -> new ComedyPlayType();
-            default -> throw new IllegalArgumentException("戏剧类型不正确!");
-        };
+        this.playType = PlayTypeFactory.buildPlayType(typeName);
     }
 
     public String getId() {
