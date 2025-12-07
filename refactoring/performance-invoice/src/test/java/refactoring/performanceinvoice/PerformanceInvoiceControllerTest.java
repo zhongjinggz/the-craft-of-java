@@ -2,13 +2,15 @@ package refactoring.performanceinvoice;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+@ExtendWith(MockitoExtension.class)
 class PerformanceInvoiceControllerTest {
 
     @InjectMocks
@@ -20,16 +22,8 @@ class PerformanceInvoiceControllerTest {
     @BeforeEach
     void setUp() {
 
-        // 初始化 Mockito 注解支持
-        MockitoAnnotations.openMocks(this);
-
-        // 模拟 repository 行为
-        doNothing().when(repository).save(any(PerformanceInvoice.class));
     }
 
-    /**
-     * 测试正常悲剧演出账单生成
-     */
     @Test
     void should_create_bill_with_tragedy_performance() {
         // given
@@ -54,16 +48,10 @@ class PerformanceInvoiceControllerTest {
         verify(repository, times(1)).save(any(PerformanceInvoice.class));
     }
 
-    /**
-     * 测试正常喜剧演出账单生成
-     */
     @Test
-//    void testCreateBillWithComedyPerformance() {
     void should_create_bill_with_comedy_performance() {
         PerformanceSummary summary = new PerformanceSummary("李四");
         summary.addPerformance("007", 25); // 超过20人
-
-//        doNothing().when(repository).save(any(PerformanceInvoice.class));
 
         PerformanceInvoice invoice = controller.createInvoice(summary);
 
@@ -80,9 +68,6 @@ class PerformanceInvoiceControllerTest {
         verify(repository, times(1)).save(any(PerformanceInvoice.class));
     }
 
-    /**
-     * 测试多个不同类型演出合并账单
-     */
     @Test
     void should_create_bill_with_multiple_types_of_performances() {
         PerformanceSummary summary = new PerformanceSummary("王五");
@@ -104,28 +89,9 @@ class PerformanceInvoiceControllerTest {
         verify(repository, times(1)).save(any(PerformanceInvoice.class));
     }
 
-    /**
-     * 测试若剧目不存在，则抛出空异常
-     */
-    //@Test
-    void should_throw_null_pointer_exception_for_invalid_play() {
-
-        PerformanceSummary summary = new PerformanceSummary("赵六");
-        summary.addPerformance("invalid", 20);
-
-        assertThrows(NullPointerException.class, () -> {
-            controller.createInvoice(summary);
-        });
-
-        verify(repository, never()).save(any(PerformanceInvoice.class)); // 不应执行保存
-    }
-
 
     // TODO 测试非法剧目类型
 
-    /**
-     * 测试边界情况：没有演出时账单为空但有效
-     */
     @Test
     void should_create_empty_bill_for_no_performances() {
         PerformanceSummary summary = new PerformanceSummary("孙七");
