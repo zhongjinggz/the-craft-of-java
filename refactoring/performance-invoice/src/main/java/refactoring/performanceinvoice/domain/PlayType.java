@@ -1,16 +1,12 @@
 package refactoring.performanceinvoice.domain;
 
-public class PlayType {
-    private final String name;
+public class PlayType extends SuperPlayType {
 
     public PlayType(String name) {
-        this.name = name;
+        super(name);
     }
 
-    public String getName() {
-        return name;
-    }
-
+    @Override
     public int calPoints(int audienceCount) {
         int points = Math.max(audienceCount - 30, 0);
         if ("comedy".equals(getName())) {
@@ -19,6 +15,7 @@ public class PlayType {
         return points;
     }
 
+    @Override
     public int calAmount(int audience) {
         int amount;
 

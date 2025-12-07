@@ -11,7 +11,6 @@ public class Play {
     public Play(String id, String name, String typeName) {
         this.id = id;
         this.name = name;
-        this.setTypeName(typeName);
         this.playType = new PlayType(typeName);
     }
 
@@ -27,8 +26,6 @@ public class Play {
         return playType.getName();
     }
 
-    public void setTypeName(String typeName) {
-    }
 
     public int calPoints(Performance perf) {
         return playType.calPoints(perf.getAudience());

@@ -11,9 +11,8 @@ import refactoring.performanceinvoice.domain.PerformanceInvoice;
 //DONE 坏味道：过长的函数(PerformanceInvoiceService#createInvoice)；重构手法：提炼函数
 //DONE 坏味道：特性依恋；重构手法：搬移函数
 //DONE 坏味道：基本类型偏执；重构手法：提炼类
-//TODO 坏味道：消息链；重构手法：提炼函数/搬移函数
-//TODO 坏味道：复杂代码；重构手法：提炼函数
-//TODO 坏味道：重复的 Switch；重构手法：提炼超类/搬移函数/重写算法（实现策略模式，开闭原则）
+//DONE 坏味道：消息链；重构手法：提炼函数/搬移函数
+//TODO 坏味道：重复的Switch / 复杂代码；重构手法：提炼超类/搬移函数/重写算法（实现策略模式，开闭原则）
 //TODO 坏味道：魔法数字; 重构手法：提炼常量
 //TODO 坏味道：数据类；重构手法：搬移函数/内联函数
 //TODO 优化：Play Repository
