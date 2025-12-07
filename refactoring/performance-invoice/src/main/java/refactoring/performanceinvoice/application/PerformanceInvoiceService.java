@@ -34,14 +34,10 @@ public class PerformanceInvoiceService {
         for (Performance perf : performanceSummary.getPerformances()) {
             Play play = plays.get(perf.getPlayId());
             int thisAmt = calAmount(perf, play);
-
-            //计算观众量积分
-            volumeCredits += Math.max(perf.getAudience() - 30, 0);
-            if ("comedy".equals(play.getType())) {
-                volumeCredits += Math.floorDiv(perf.getAudience(), 5);
-            }
-
             totalAmount += thisAmt;
+
+            volumeCredits = calTotalAudiencePoints(perf, volumeCredits, play);
+
 
             // 添加账单项
             bill.addItem(play.getName(),thisAmt, perf.getAudience());
@@ -55,6 +51,15 @@ public class PerformanceInvoiceService {
 
         repository.save(bill);
         return bill;
+    }
+
+    private int calTotalAudiencePoints(Performance perf, int volumeCredits, Play play) {
+        //计算观众量积分
+        volumeCredits += Math.max(perf.getAudience() - 30, 0);
+        if ("comedy".equals(play.getType())) {
+            volumeCredits += Math.floorDiv(perf.getAudience(), 5);
+        }
+        return volumeCredits;
     }
 
     private int calAmount(Performance perf, Play play) {
