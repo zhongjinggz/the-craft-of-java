@@ -1,4 +1,6 @@
-package refactoring.performanceinvoice.domain;
+package refactoring.performanceinvoice.domain.performanceinvoice;
+
+import refactoring.performanceinvoice.domain.play.Play;
 
 import java.util.ArrayList;
 import java.util.Collections;

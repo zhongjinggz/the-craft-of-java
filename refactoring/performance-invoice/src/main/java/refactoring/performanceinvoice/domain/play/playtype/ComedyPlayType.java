@@ -1,4 +1,4 @@
-package refactoring.performanceinvoice.domain;
+package refactoring.performanceinvoice.domain.play.playtype;
 
 public class ComedyPlayType extends PlayType {
 

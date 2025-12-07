@@ -1,5 +1,7 @@
-package refactoring.performanceinvoice.domain;
+package refactoring.performanceinvoice.domain.play;
 
+import refactoring.performanceinvoice.domain.play.playtype.PlayType;
+import refactoring.performanceinvoice.domain.play.playtype.PlayTypes;
 import refactoring.performanceinvoice.drivingadapter.Performance;
 
 public class Play {

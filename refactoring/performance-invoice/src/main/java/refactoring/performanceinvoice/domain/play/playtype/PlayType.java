@@ -1,4 +1,4 @@
-package refactoring.performanceinvoice.domain;
+package refactoring.performanceinvoice.domain.play.playtype;
 
 public abstract class PlayType {
     public abstract int calPoints(int audienceCount);

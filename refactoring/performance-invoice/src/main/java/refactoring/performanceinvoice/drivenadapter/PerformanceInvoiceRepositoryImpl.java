@@ -1,8 +1,8 @@
 package refactoring.performanceinvoice.drivenadapter;
 
 import org.springframework.stereotype.Repository;
-import refactoring.performanceinvoice.domain.PerformanceInvoice;
-import refactoring.performanceinvoice.domain.PerformanceInvoiceRepository;
+import refactoring.performanceinvoice.domain.performanceinvoice.PerformanceInvoice;
+import refactoring.performanceinvoice.domain.performanceinvoice.PerformanceInvoiceRepository;
 
 @Repository
 public class PerformanceInvoiceRepositoryImpl implements PerformanceInvoiceRepository {

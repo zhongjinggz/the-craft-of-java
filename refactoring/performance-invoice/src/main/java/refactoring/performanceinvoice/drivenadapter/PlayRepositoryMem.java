@@ -1,8 +1,8 @@
 package refactoring.performanceinvoice.drivenadapter;
 
 import org.springframework.stereotype.Repository;
-import refactoring.performanceinvoice.domain.Play;
-import refactoring.performanceinvoice.domain.PlayRepository;
+import refactoring.performanceinvoice.domain.play.Play;
+import refactoring.performanceinvoice.domain.play.PlayRepository;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,9 +1,9 @@
 package refactoring.performanceinvoice.application;
 
-import refactoring.performanceinvoice.domain.PerformanceInvoice;
-import refactoring.performanceinvoice.domain.PerformanceInvoiceRepository;
-import refactoring.performanceinvoice.domain.Play;
-import refactoring.performanceinvoice.domain.PlayRepository;
+import refactoring.performanceinvoice.domain.performanceinvoice.PerformanceInvoice;
+import refactoring.performanceinvoice.domain.performanceinvoice.PerformanceInvoiceRepository;
+import refactoring.performanceinvoice.domain.play.Play;
+import refactoring.performanceinvoice.domain.play.PlayRepository;
 import refactoring.performanceinvoice.drivingadapter.Performance;
 import refactoring.performanceinvoice.drivingadapter.PerformanceSummary;
 
