@@ -5,6 +5,8 @@ public class Play {
     String name;
     String type;
 
+    PlayType playType;
+
     public Play(String id, String name, String type) {
         this.id = id;
         this.name = name;
