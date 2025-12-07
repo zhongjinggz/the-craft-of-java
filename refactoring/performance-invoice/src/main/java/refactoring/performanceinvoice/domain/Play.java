@@ -6,12 +6,12 @@ public class Play {
     private String id;
     private String name;
 
-    public PlayType playType;
+    public ComedyPlayType playType;
 
     public Play(String id, String name, String typeName) {
         this.id = id;
         this.name = name;
-        this.playType = new PlayType(typeName);
+        this.playType = new ComedyPlayType(typeName);
     }
 
     public String getId() {
