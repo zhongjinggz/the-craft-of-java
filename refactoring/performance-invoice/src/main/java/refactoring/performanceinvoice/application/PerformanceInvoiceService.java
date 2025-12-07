@@ -53,13 +53,13 @@ public class PerformanceInvoiceService {
         return bill;
     }
 
-    private int calTotalAudiencePoints(Performance perf, int volumeCredits, Play play) {
-        //计算观众量积分
-        volumeCredits += Math.max(perf.getAudience() - 30, 0);
+    private int calTotalAudiencePoints(Performance perf, int totalPoints, Play play) {
+        int thisPoints = Math.max(perf.getAudience() - 30, 0);
         if ("comedy".equals(play.getType())) {
-            volumeCredits += Math.floorDiv(perf.getAudience(), 5);
+            thisPoints += Math.floorDiv(perf.getAudience(), 5);
         }
-        return volumeCredits;
+        totalPoints = totalPoints + thisPoints;
+        return totalPoints;
     }
 
     private int calAmount(Performance perf, Play play) {
