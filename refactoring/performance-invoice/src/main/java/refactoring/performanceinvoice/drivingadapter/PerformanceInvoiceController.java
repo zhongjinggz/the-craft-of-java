@@ -2,6 +2,7 @@ package refactoring.performanceinvoice.drivingadapter;
 
 import org.springframework.web.bind.annotation.*;
 import refactoring.performanceinvoice.application.PerformanceInvoiceService;
+import refactoring.performanceinvoice.application.PerformanceSummary;
 import refactoring.performanceinvoice.domain.performanceinvoice.PerformanceInvoice;
 
 //DONE 坏味道：缺乏包内聚；重构手法：重构到分层架构/搬移类

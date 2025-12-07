@@ -10,7 +10,7 @@ import refactoring.performanceinvoice.domain.performanceinvoice.PerformanceInvoi
 import refactoring.performanceinvoice.domain.performanceinvoice.PerformanceInvoiceRepository;
 import refactoring.performanceinvoice.drivenadapter.PlayRepositoryMem;
 import refactoring.performanceinvoice.drivingadapter.PerformanceInvoiceController;
-import refactoring.performanceinvoice.drivingadapter.PerformanceSummary;
+import refactoring.performanceinvoice.application.PerformanceSummary;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;

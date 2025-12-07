@@ -4,8 +4,6 @@ import refactoring.performanceinvoice.domain.performanceinvoice.PerformanceInvoi
 import refactoring.performanceinvoice.domain.performanceinvoice.PerformanceInvoiceRepository;
 import refactoring.performanceinvoice.domain.play.Play;
 import refactoring.performanceinvoice.domain.play.PlayRepository;
-import refactoring.performanceinvoice.drivingadapter.Performance;
-import refactoring.performanceinvoice.drivingadapter.PerformanceSummary;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -2,7 +2,7 @@ package refactoring.performanceinvoice.domain.play;
 
 import refactoring.performanceinvoice.domain.play.playtype.PlayType;
 import refactoring.performanceinvoice.domain.play.playtype.PlayTypes;
-import refactoring.performanceinvoice.drivingadapter.Performance;
+import refactoring.performanceinvoice.application.Performance;
 
 public class Play {
     private final String id;
