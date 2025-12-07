@@ -2,20 +2,25 @@ package refactoring.performanceinvoice.domain;
 
 public class TragedyPlayType extends PlayType {
 
+    private static final int POINTS_THRESHOLD = 30;
+    private static final int AMOUNT_THRESHOLD = 30;
+    private static final int BASE_PRICE = 40000;
+    private static final int UNIT_PRICE = 1000;
+
     public TragedyPlayType(String name) {
         super(name);
     }
 
     @Override
     public int calPoints(int audienceCount) {
-        return Math.max(audienceCount - 30, 0);
+        return Math.max(audienceCount - POINTS_THRESHOLD, 0);
     }
 
     @Override
-    public int calAmount(int audience) {
-        int amount= 40000;
-        if (audience > 30) {
-            amount += 1000 * (audience - 30);
+    public int calAmount(int audienceCount) {
+        int amount= BASE_PRICE;
+        if (audienceCount > AMOUNT_THRESHOLD) {
+            amount += UNIT_PRICE * (audienceCount - AMOUNT_THRESHOLD);
         }
         return amount;
     }
