@@ -24,30 +24,30 @@ public class Play {
     }
 
     public int calPoints(int audienceCount) {
-        int thisPoints = Math.max(audienceCount - 30, 0);
-        if ("comedy".equals(getType())) {
-            thisPoints += Math.floorDiv(audienceCount, 5);
+        int points = Math.max(audienceCount - 30, 0);
+        if ("comedy".equals(type)) {
+            points += Math.floorDiv(audienceCount, 5);
         }
-        return thisPoints;
+        return points;
     }
 
     public int calAmount(int audience) {
-        int thisAmt;
+        int amount;
 
-        if (getType().equals("tragedy")) {
-            thisAmt = 40000;
+        if (type.equals("tragedy")) {
+            amount = 40000;
             if (audience > 30) {
-                thisAmt += 1000 * (audience - 30);
+                amount += 1000 * (audience - 30);
             }
-        } else if (getType().equals("comedy")) {
-            thisAmt = 30000;
+        } else if (type.equals("comedy")) {
+            amount = 30000;
             if (audience > 20) {
-                thisAmt += 10000 + 500 * (audience - 20);
+                amount += 10000 + 500 * (audience - 20);
             }
-            thisAmt += 300 * audience;
+            amount += 300 * audience;
         } else {
             throw new IllegalArgumentException("戏剧类型不正确!");
         }
-        return thisAmt;
+        return amount;
     }
 }
