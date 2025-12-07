@@ -54,12 +54,17 @@ public class PerformanceInvoiceService {
     }
 
     private int calTotalAudiencePoints(Performance perf, int totalPoints, Play play) {
+        int thisPoints = calThisPoints(perf, play);
+        totalPoints = totalPoints + thisPoints;
+        return totalPoints;
+    }
+
+    private int calThisPoints(Performance perf, Play play) {
         int thisPoints = Math.max(perf.getAudience() - 30, 0);
         if ("comedy".equals(play.getType())) {
             thisPoints += Math.floorDiv(perf.getAudience(), 5);
         }
-        totalPoints = totalPoints + thisPoints;
-        return totalPoints;
+        return thisPoints;
     }
 
     private int calAmount(Performance perf, Play play) {
