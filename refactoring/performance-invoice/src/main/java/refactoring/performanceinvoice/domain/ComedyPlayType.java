@@ -8,21 +8,16 @@ public class ComedyPlayType extends PlayType {
 
     @Override
     public int calPoints(int audienceCount) {
-        int points = Math.max(audienceCount - 30, 0);
-        points += Math.floorDiv(audienceCount, 5);
-        return points;
+        return Math.max(audienceCount - 30, 0)
+            + Math.floorDiv(audienceCount, 5);
     }
 
     @Override
     public int calAmount(int audience) {
-        int amount;
-
-
-        amount = 30000;
+        int amount = 30000 + 300 * audience;
         if (audience > 20) {
             amount += 10000 + 500 * (audience - 20);
         }
-        amount += 300 * audience;
         return amount;
     }
 }

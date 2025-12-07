@@ -8,15 +8,12 @@ public class TragedyPlayType extends PlayType {
 
     @Override
     public int calPoints(int audienceCount) {
-        int points = Math.max(audienceCount - 30, 0);
-        return points;
+        return Math.max(audienceCount - 30, 0);
     }
 
     @Override
     public int calAmount(int audience) {
-        int amount;
-
-        amount = 40000;
+        int amount= 40000;
         if (audience > 30) {
             amount += 1000 * (audience - 30);
         }
