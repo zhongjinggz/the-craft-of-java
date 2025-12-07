@@ -40,12 +40,12 @@ public class PerformanceInvoiceService {
             totalPoints += thisPoints;
 
 
-            totalAmount = invoice.addItem2(totalAmount, thisAmount, play, perf.getAudience());
+            totalAmount = invoice.addItem2(thisAmount, play, perf.getAudience());
 
         }
 
         //设置账单金额和积分
-        invoice.setTotalAmount(totalAmount);
+        invoice.setAmount(totalAmount);
         invoice.setVolumePoints(totalPoints);
 
         repository.save(invoice);

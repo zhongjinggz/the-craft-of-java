@@ -8,9 +8,9 @@ public class PerformanceInvoice {
 
     private String customer;
 
-    private int totalAmount;
+    private int amount;
 
-    private int volumeCredits;
+    private int audiencePoints;
 
     private List<PerformanceInvoiceItem> items = new ArrayList<>();
 
@@ -25,10 +25,6 @@ public class PerformanceInvoice {
         this.items.add(item);
     }
 
-    public void addItem(String name, int amount, int audience) {
-        this.items.add(new PerformanceInvoiceItem(name, amount, audience));
-    }
-
     public String getCustomer() {
         return customer;
     }
@@ -37,25 +33,26 @@ public class PerformanceInvoice {
         return items;
     }
 
-    public void setTotalAmount(int totalAmount) {
-        this.totalAmount = totalAmount;
+    public void setAmount(int amount) {
+        this.amount = amount;
     }
 
     public void setVolumePoints(int volumeCredits) {
-        this.volumeCredits = volumeCredits;
+        this.audiencePoints = volumeCredits;
     }
 
-    public int getTotalAmount() {
-        return totalAmount;
+    public int getAmount() {
+        return amount;
     }
 
-    public int getVolumeCredits() {
-        return volumeCredits;
+    public int getAudiencePoints() {
+        return audiencePoints;
     }
 
-    public int addItem2(int totalAmount, int thisAmount, Play play, int audienceCount) {
-        totalAmount += thisAmount;
-        addItem(play.getName(), thisAmount, audienceCount);
-        return totalAmount;
+    public int addItem2(int itemAmount, Play play, int audienceCount) {
+        this.items.add(new PerformanceInvoiceItem(play.getName()
+            , itemAmount, audienceCount));
+        amount += itemAmount;
+        return amount;
     }
 }
