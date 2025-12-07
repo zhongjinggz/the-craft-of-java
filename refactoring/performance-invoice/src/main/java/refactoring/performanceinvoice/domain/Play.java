@@ -1,4 +1,4 @@
-package refactoring.performanceinvoice;
+package refactoring.performanceinvoice.domain;
 
 public class Play {
     String id;

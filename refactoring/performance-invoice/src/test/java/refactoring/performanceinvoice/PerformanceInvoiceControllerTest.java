@@ -6,6 +6,10 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+import refactoring.performanceinvoice.domain.PerformanceInvoice;
+import refactoring.performanceinvoice.drivenadapter.PerformanceInvoiceRepository;
+import refactoring.performanceinvoice.drivingadapter.PerformanceInvoiceController;
+import refactoring.performanceinvoice.drivingadapter.PerformanceSummary;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;

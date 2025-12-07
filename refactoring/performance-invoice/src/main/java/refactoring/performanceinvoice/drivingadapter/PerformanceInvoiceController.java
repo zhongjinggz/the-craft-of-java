@@ -1,7 +1,10 @@
-package refactoring.performanceinvoice;
+package refactoring.performanceinvoice.drivingadapter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import refactoring.performanceinvoice.drivenadapter.PerformanceInvoiceRepository;
+import refactoring.performanceinvoice.domain.PerformanceInvoice;
+import refactoring.performanceinvoice.domain.Play;
 
 import java.util.HashMap;
 import java.util.Map;
