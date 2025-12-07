@@ -34,10 +34,10 @@ public class PerformanceInvoiceService {
         for (Performance perf : performanceSummary.getPerformances()) {
             Play play = plays.get(perf.getPlayId());
 
-            int thisAmount = play.calAmount(perf.getAudience());
+            int thisAmount = play.playType.calAmount(perf.getAudience());
             totalAmount += thisAmount;
 
-            int thisPoints = play.calPoints(perf.getAudience());
+            int thisPoints = play.playType.calPoints(perf.getAudience());
             totalPoints += thisPoints;
 
 

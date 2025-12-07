@@ -4,7 +4,7 @@ public class Play {
     private String id;
     private String name;
 
-    private PlayType playType;
+    public PlayType playType;
 
     public Play(String id, String name, String typeName) {
         this.id = id;
@@ -23,34 +23,6 @@ public class Play {
 
     public String getTypeName() {
         return playType.getName();
-    }
-
-    public int calPoints(int audienceCount) {
-        int points = Math.max(audienceCount - 30, 0);
-        if ("comedy".equals(playType.getName())) {
-            points += Math.floorDiv(audienceCount, 5);
-        }
-        return points;
-    }
-
-    public int calAmount(int audience) {
-        int amount;
-
-        if (playType.getName().equals("tragedy")) {
-            amount = 40000;
-            if (audience > 30) {
-                amount += 1000 * (audience - 30);
-            }
-        } else if (playType.getName().equals("comedy")) {
-            amount = 30000;
-            if (audience > 20) {
-                amount += 10000 + 500 * (audience - 20);
-            }
-            amount += 300 * audience;
-        } else {
-            throw new IllegalArgumentException("戏剧类型不正确!");
-        }
-        return amount;
     }
 
     public void setTypeName(String typeName) {
