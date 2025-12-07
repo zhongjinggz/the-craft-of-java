@@ -34,10 +34,10 @@ public class PerformanceInvoiceService {
         for (Performance perf : performanceSummary.getPerformances()) {
             Play play = plays.get(perf.getPlayId());
 
-            int thisAmount = calAmount(play, perf.getAudience());
+            int thisAmount = play.calAmount(perf.getAudience());
             totalAmount += thisAmount;
 
-            int thisPoints = calPoints(play, perf.getAudience());
+            int thisPoints = play.calPoints(perf.getAudience());
             totalPoints += thisPoints;
 
 
@@ -55,31 +55,4 @@ public class PerformanceInvoiceService {
         return invoice;
     }
 
-    private int calPoints(Play play, int audienceCount) {
-        int thisPoints = Math.max(audienceCount - 30, 0);
-        if ("comedy".equals(play.getType())) {
-            thisPoints += Math.floorDiv(audienceCount, 5);
-        }
-        return thisPoints;
-    }
-
-    private int calAmount(Play play, int audience) {
-        int thisAmt;
-
-        if (play.getType().equals("tragedy")) {
-            thisAmt = 40000;
-            if (audience > 30) {
-                thisAmt += 1000 * (audience - 30);
-            }
-        } else if (play.getType().equals("comedy")) {
-            thisAmt = 30000;
-            if (audience > 20) {
-                thisAmt += 10000 + 500 * (audience - 20);
-            }
-            thisAmt += 300 * audience;
-        } else {
-            throw new IllegalArgumentException("戏剧类型不正确!");
-        }
-        return thisAmt;
-    }
 }
