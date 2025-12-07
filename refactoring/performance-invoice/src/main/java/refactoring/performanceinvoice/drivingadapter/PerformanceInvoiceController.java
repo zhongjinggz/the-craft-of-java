@@ -9,8 +9,9 @@ import refactoring.performanceinvoice.domain.Play;
 import java.util.HashMap;
 import java.util.Map;
 
-//TODO 坏味道：缺乏包内聚；重构手法：重构到分层架构/搬移类
-//TODO 坏味道：过长的函数(违反单一职责)；重构手法：提炼函数
+//DONE 坏味道：缺乏包内聚；重构手法：重构到分层架构/搬移类
+//DOING 坏味道：过长的函数；重构手法：提炼函数
+//TODO 坏味道：过长的类；重构手法：提炼类/搬移函数
 //TODO 坏味道：临时变量；重构手法：内联变量
 //TODO 坏味道：过大的类；重构手法：提炼类（service 类）
 //TODO 坏味道：复杂代码；重构手法：提炼函数
@@ -36,6 +37,12 @@ public class PerformanceInvoiceController {
 
     @PostMapping("/api/performance-invoice")
     public PerformanceInvoice createInvoice(@RequestBody PerformanceSummary performanceSummary) {
+        PerformanceInvoice invoice = createInvoice2(performanceSummary);
+
+        return invoice;
+    }
+
+    private PerformanceInvoice createInvoice2(PerformanceSummary performanceSummary) {
         //初始化戏剧列表
         plays.put("dasheng", new Play("dasheng", "大圣娶亲", "tragedy"));
         plays.put("007", new Play("007", "国产凌凌漆", "comedy"));
@@ -86,7 +93,6 @@ public class PerformanceInvoiceController {
         bill.setVolumePoints(volumeCredits);
 
         repository.save(bill);
-
         return bill;
     }
 
