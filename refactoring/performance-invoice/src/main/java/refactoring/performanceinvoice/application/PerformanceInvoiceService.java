@@ -1,6 +1,5 @@
 package refactoring.performanceinvoice.application;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import refactoring.performanceinvoice.domain.PerformanceInvoice;
 import refactoring.performanceinvoice.domain.Play;
 import refactoring.performanceinvoice.drivenadapter.PerformanceInvoiceRepository;
@@ -11,7 +10,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PerformanceInvoiceService {
-    @Autowired
     PerformanceInvoiceRepository repository;
 
     public PerformanceInvoiceService(PerformanceInvoiceRepository repository) {
@@ -20,7 +18,7 @@ public class PerformanceInvoiceService {
 
 
     Map<String, Play> plays = new HashMap<>();
-    public PerformanceInvoice createInvoice2(PerformanceSummary performanceSummary) {
+    public PerformanceInvoice createInvoice(PerformanceSummary performanceSummary) {
         //初始化戏剧列表
         plays.put("dasheng", new Play("dasheng", "大圣娶亲", "tragedy"));
         plays.put("007", new Play("007", "国产凌凌漆", "comedy"));
@@ -35,22 +33,7 @@ public class PerformanceInvoiceService {
 
         for (Performance perf : performanceSummary.getPerformances()) {
             Play play = plays.get(perf.getPlayId());
-            int thisAmt;
-
-            if (play.getType().equals("tragedy")) {
-                thisAmt = 40000;
-                if (perf.getAudience() > 30) {
-                    thisAmt += 1000 * (perf.getAudience() - 30);
-                }
-            } else if (play.getType().equals("comedy")) {
-                thisAmt = 30000;
-                if (perf.getAudience() > 20) {
-                    thisAmt += 10000 + 500 * (perf.getAudience() - 20);
-                }
-                thisAmt += 300 * perf.getAudience();
-            } else {
-                throw new IllegalArgumentException("戏剧类型不正确!");
-            }
+            int thisAmt = calAmount(perf, play);
 
             //计算观众量积分
             volumeCredits += Math.max(perf.getAudience() - 30, 0);
@@ -72,5 +55,25 @@ public class PerformanceInvoiceService {
 
         repository.save(bill);
         return bill;
+    }
+
+    private int calAmount(Performance perf, Play play) {
+        int thisAmt;
+
+        if (play.getType().equals("tragedy")) {
+            thisAmt = 40000;
+            if (perf.getAudience() > 30) {
+                thisAmt += 1000 * (perf.getAudience() - 30);
+            }
+        } else if (play.getType().equals("comedy")) {
+            thisAmt = 30000;
+            if (perf.getAudience() > 20) {
+                thisAmt += 10000 + 500 * (perf.getAudience() - 20);
+            }
+            thisAmt += 300 * perf.getAudience();
+        } else {
+            throw new IllegalArgumentException("戏剧类型不正确!");
+        }
+        return thisAmt;
     }
 }

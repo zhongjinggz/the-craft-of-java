@@ -5,9 +5,10 @@ import refactoring.performanceinvoice.application.PerformanceInvoiceService;
 import refactoring.performanceinvoice.domain.PerformanceInvoice;
 
 //DONE 坏味道：缺乏包内聚；重构手法：重构到分层架构/搬移类
-//DONE 坏味道：过长的函数；重构手法：提炼函数
-//DOING 坏味道：临时变量；重构手法：内联变量
-//TODO 坏味道：过长的类；重构手法：提炼类/搬移函数
+//DONE 坏味道：过长的函数(PerformanceInvoiceController#createInvoice)；重构手法：提炼函数
+//CONE 坏味道：临时变量；重构手法：内联变量
+//DONE 坏味道：过长的类(PerformanceInvoiceController)；重构手法：提炼类/搬移函数
+//DONE 坏味道：过长的函数(PerformanceInvoiceService#createInvoice)；重构手法：提炼函数
 //TODO 坏味道：复杂代码；重构手法：提炼函数
 //TODO 坏味道：特性依恋；重构手法：搬移函数
 //TODO 坏味道：基本类型偏执；重构手法：提炼类
@@ -32,7 +33,7 @@ public class PerformanceInvoiceController {
 
     @PostMapping("/api/performance-invoice")
     public PerformanceInvoice createInvoice(@RequestBody PerformanceSummary performanceSummary) {
-        return invoiceService.createInvoice2(performanceSummary);
+        return invoiceService.createInvoice(performanceSummary);
     }
 
 }
