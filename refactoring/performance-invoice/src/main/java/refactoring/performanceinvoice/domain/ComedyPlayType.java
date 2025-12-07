@@ -11,10 +11,6 @@ public class ComedyPlayType extends PlayType {
     private static final int EXTRA_UNIT_PRICE = 500;
     public static final String NAME = "comedy";
 
-    public ComedyPlayType(String name) {
-        super(name);
-    }
-
     @Override
     public int calPoints(int audienceCount) {
         return Math.max(audienceCount - POINTS_THRESHOLD, 0)

@@ -8,10 +8,6 @@ public class TragedyPlayType extends PlayType {
     private static final int UNIT_PRICE = 1000;
     public static final String NAME = "tragedy";
 
-    public TragedyPlayType(String name) {
-        super(name);
-    }
-
     @Override
     public int calPoints(int audienceCount) {
         return Math.max(audienceCount - POINTS_THRESHOLD, 0);

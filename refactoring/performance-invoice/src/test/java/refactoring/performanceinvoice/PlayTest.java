@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 import refactoring.performanceinvoice.domain.Play;
+import refactoring.performanceinvoice.domain.TragedyPlayType;
 
 class PlayTest {
 
@@ -20,7 +21,7 @@ void should_create_play() {
         // Then
         assertEquals(id, play.getId());
         assertEquals(name, play.getName());
-        assertEquals(type, play.getTypeName());
+        assertEquals((new TragedyPlayType()).getClass(), play.getType().getClass());
     }
 
 }

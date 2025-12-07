@@ -16,8 +16,8 @@ public class Play {
 
     private static PlayType buildPlayType(String typeName) {
         return switch (typeName) {
-            case TragedyPlayType.NAME -> new TragedyPlayType(typeName);
-            case ComedyPlayType.NAME -> new ComedyPlayType(typeName);
+            case TragedyPlayType.NAME -> new TragedyPlayType();
+            case ComedyPlayType.NAME -> new ComedyPlayType();
             default -> throw new IllegalArgumentException("戏剧类型不正确!");
         };
     }
@@ -30,9 +30,9 @@ public class Play {
         return name;
     }
 
-    public String getTypeName() {
-        return playType.getName();
-    }
+//    public String getTypeName() {
+//        return playType.getName();
+//    }
 
 
     public int calPoints(Performance perf) {
@@ -41,5 +41,9 @@ public class Play {
 
     public int calAmount(Performance perf) {
         return playType.calAmount(perf.getAudience());
+    }
+
+    public PlayType getType() {
+        return playType;
     }
 }
